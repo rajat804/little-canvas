@@ -60,7 +60,7 @@ export default function CanvasLab() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={HERO_IMAGE} alt="Little Canvas Lab" className="w-full h-full object-cover" />
+          <img src={HERO_IMAGE} alt="Golden Step Lab" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-purple-900/60 to-pink-900/70" />
         </div>
 
