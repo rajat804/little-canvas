@@ -99,10 +99,10 @@ export default function WhyChoose() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-gradient-to-r from-purple-700 via-pink-600 to-rose-700 bg-clip-text leading-tight">
-              Why Choose Little Canvas Pre-School?
+              Why Choose Golden Step Pre-School?
             </h2>
             <p className="mt-8 text-lg sm:text-xl md:text-2xl text-black font-semibold max-w-5xl mx-auto leading-relaxed px-4">
-              Choosing Little Canvas means investing in a structured, future-focused educational foundation built on a proven philosophy and integrated with modern technology.
+              Choosing Golden Step means investing in a structured, future-focused educational foundation built on a proven philosophy and integrated with modern technology.
             </p>
           </motion.div>
 
