@@ -64,7 +64,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
-            <img src={assets.logo} alt="logo" className="w-50 sm:w-62 sm:h-20" />
+            <img src={assets.Logo} alt="logo" className="w-50 sm:w-62 sm:h-20" />
           </Link>
         </div>
 
@@ -166,14 +166,14 @@ const Navbar = () => {
             </Link>
 
             {/* ✅ GALLERY (ADDED) */}
-            <Link
+            {/* <Link
               to="/gallery"
               onClick={closeMobileMenu}
               className="flex items-center text-pink-600 hover:underline transition font-medium w-full md:w-auto border-b border-gray-200 md:border-none pb-2 md:pb-0"
             >
               <FaImages className="mr-2 text-lg" />
               GALLERY
-            </Link>
+            </Link> */}
 
             {/* FAQ */}
             <Link
