@@ -16,7 +16,7 @@ const timeline = [
   {
     year: "2018",
     title: "The First Stroke",
-    desc: "Little Canvas began with 15 children and a vision to revolutionize early education through scientific, structured joy.",
+    desc: "Golden Step began with 15 children and a vision to revolutionize early education through scientific, structured joy.",
   },
   {
     year: "2020",
@@ -164,7 +164,7 @@ export default function AboutUs() {
             className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 lg:p-14 text-center"
           >
             <p className="text-lg sm:text-xl md:text-2xl text-black leading-relaxed max-w-5xl mx-auto font-semibold">
-              At <strong>Little Canvas</strong>, we recognize that the journey to lifelong success begins in the early years. 
+              At <strong>Golden Step</strong>, we recognize that the journey to lifelong success begins in the early years. 
               The <strong>National Education Policy (NEP) 2020</strong> affirms that over <strong>85% of a child's critical brain development</strong> occurs before age six.
             </p>
             <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#4764c7] mt-6 md:mt-8 italic">
@@ -326,7 +326,7 @@ export default function AboutUs() {
             Ready to Paint a Bright Future?
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl mb-10 md:mb-12 max-w-4xl mx-auto px-2 font-semibold">
-            Join Little Canvas Pre-School and give your child the scientific, joyful foundation 
+            Join Golden Step Pre-School and give your child the scientific, joyful foundation 
             they deserve — aligned with NEP 2020 and proven by 850+ success stories.
           </p>
           <motion.button
