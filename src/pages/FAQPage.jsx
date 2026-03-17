@@ -5,10 +5,10 @@ import { ChevronDown, ChevronUp, Sparkles, Heart, Shield, Users, Calendar, Messa
 import PopupForm from "../components/PopupForm";
 
 const faqs = [ /* your faq data remains exactly the same */ 
-  { q: "What makes Little Canvas different from other preschools?", a: "Little Canvas integrates the independence-focused Montessori Curriculum with the structured, hands-on learning of the Little Canvas Lab. This unique combination ensures children move from concrete practice to abstract mastery, delivering deep conceptual understanding far superior to standard rote learning.", icon: <Sparkles /> },
-  { q: "What exactly is the Little Canvas Lab, and how does my child use it?", a: "The Little Canvas Lab is a specialized, hands-on learning zone filled with hundreds of scientifically designed materials. Here, children work independently at their own pace, using the materials to physically discover and master core concepts in math, language, and life skills.", icon: <Heart /> },
+  { q: "What makes Golden Step different from other preschools?", a: "Golden Step integrates the independence-focused Montessori Curriculum with the structured, hands-on learning of the Golden Step Lab. This unique combination ensures children move from concrete practice to abstract mastery, delivering deep conceptual understanding far superior to standard rote learning.", icon: <Sparkles /> },
+  { q: "What exactly is the Golden Step Lab, and how does my child use it?", a: "The Golden Step Lab is a specialized, hands-on learning zone filled with hundreds of scientifically designed materials. Here, children work independently at their own pace, using the materials to physically discover and master core concepts in math, language, and life skills.", icon: <Heart /> },
   { q: "What is the fundamental principle of Montessori education?", a: "The core principle of Montessori education, based on the work of Dr. Maria Montessori, is to facilitate the child's natural desire to learn within a \"prepared environment,\" fostering independence, concentration, and self-discipline.", icon: <Shield /> },
-  { q: "Is the Little Canvas curriculum the same as the pure Montessori method?", a: "No. Little Canvas curriculum is Montessori-inspired but is an evolved, practical curriculum. It combines Montessori's independence principles with the structure and assessments needed to align with modern educational standards and ensure seamless readiness for primary school.", icon: <Users /> },
+  { q: "Is the Golden Step curriculum the same as the pure Montessori method?", a: "No. Golden Step curriculum is Montessori-inspired but is an evolved, practical curriculum. It combines Montessori's independence principles with the structure and assessments needed to align with modern educational standards and ensure seamless readiness for primary school.", icon: <Users /> },
   { q: "What does a typical day look like?", a: "Our daily routine blends structured classroom work, free play, and a dedicated hour of hands-on Canvas Lab exploration.", icon: <Calendar /> },
   { q: "How do you handle different learning speeds?", a: "Each child learns at their own pace—we offer individual attention and adapt activities to suit their needs.", icon: <Sparkles /> },
   { q: "How do you ensure teacher quality?", a: "We select passionate educators who are not only qualified but also genuinely love children and learning. Along with this we provide primary teacher’s training to our teachers.", icon: <Users /> },
@@ -55,7 +55,7 @@ export default function FAQPage() {
               Frequently Asked Questions
             </h1>
             <p className="mt-6 text-lg sm:text-xl lg:text-2xl text-gray-800 font-medium max-w-3xl mx-auto px-4">
-              Everything parents want to know about Little Canvas Preschool
+              Everything parents want to know about Golden Step Preschool
             </p>
           </motion.div>
 
