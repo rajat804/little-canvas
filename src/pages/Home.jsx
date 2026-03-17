@@ -6,12 +6,14 @@ import KinedoInfoSection from '../components/KinedoInfoSection'
 import ChildCareSlider from '../components/ChildCareSlider'
 import SixStagesOfMastery from '../components/SixStagesOfMastery'
 import WhyChooseLittleCanvas from '../components/WhyChooseLittleCanvas'
+import AfterSchoolPoster from '../components/AfterSchoolPoster'
 
 const Home = () => {
   return (
     <div>
       <ChildCareSlider />
       <AboutPrograms />
+      <AfterSchoolPoster/>
       <GalleryOfClasses />
       <ValuesAndMotto />
       <SixStagesOfMastery />
