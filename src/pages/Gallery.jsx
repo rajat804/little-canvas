@@ -47,25 +47,33 @@ export default function Gallery() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let mounted = true;
+  let mounted = true;
 
-    axios
-      .get(`${API_URL}/api/gallery`)
-      .then((res) => {
-        if (mounted) {
-          setGalleryImages(res.data);
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
+  axios
+    .get(`${API_URL}/api/gallery`)
+    .then((res) => {
+      if (mounted) {
+        console.log(res.data); // 👈 check kar kya aa raha hai
+
+        // ✅ SAFE FIX
+        const images = Array.isArray(res.data)
+          ? res.data
+          : res.data.data || [];
+
+        setGalleryImages(images);
         setLoading(false);
-      });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      setGalleryImages([]); // safety
+      setLoading(false);
+    });
 
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  return () => {
+    mounted = false;
+  };
+}, []);
 
   return (
     <>
