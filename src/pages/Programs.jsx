@@ -16,6 +16,7 @@ import {
   GiSparkles,
   GiButterfly,
 } from "react-icons/gi";
+import { MdChildCare } from "react-icons/md";
 import assets from "../assets/assets";
 
 /* ---------- SCROLL TO HASH FIX ---------- */
@@ -139,7 +140,7 @@ const programs = [
     level: "Level 4",
     title: "Daycare Facility",
     age: "2 - 6 Years",
-    icon: <GiHome className="w-14 h-14 sm:w-20 sm:h-20" />,
+    icon: <MdChildCare className="w-14 h-14 sm:w-20 sm:h-20" />,
     gradient: "from-green-300 to-emerald-400",
     bg: "bg-green-50",
     foundation: "Providing a safe, nurturing, and engaging environment for holistic child development beyond school hours.",
@@ -340,3 +341,4 @@ export default function Programs() {
     </div>
   );
 }
+
