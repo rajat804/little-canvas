@@ -7,39 +7,47 @@ import {
   GiPencilRuler,
   GiGraduateCap,
 } from "react-icons/gi";
-
+import { FaBaby } from "react-icons/fa";
 const programs = [
   {
     color: "from-pink-400 to-rose-500",
     icon: <GiBabyBottle className="text-6xl text-white" />,
     title: "Play Group",
-    subtitle: "(Level 0)",
+    // subtitle: "(Level 0)",
+    age: "1.5 - 2 Years",
+    text: "Activity learning, music & movement, sensory play",
+  },
+  {
+    color: "from-pink-400 to-rose-500",
+    icon: <FaBaby className="text-6xl text-white" />,
+    title: "Toddler",
+    // subtitle: "(Level 0)",
     age: "2 - 3 Years",
-    text: "This foundational stage builds physical and sensory coordination through exploration, establishing the critical independence and vocabulary needed to begin formal learning.",
+    text: "Social Development",
   },
   {
     color: "from-purple-400 to-indigo-500",
     icon: <GiBookshelf className="text-6xl text-white" />,
     title: "Nursery",
-    subtitle: "(Level 1)",
+    // subtitle: "(Level 1)",
     age: "3 – 4 Years",
-    text: "This level is dedicated to focused concentration, hands-on numeracy & introduction of CVC words. Students develop a sustained attention span, master counting and quantity association up to 20, and fluently read CVC English words.",
+    text: "Language development, storytelling, creative art & craft",
   },
   {
     color: "from-orange-400 to-amber-500",
     icon: <GiPencilRuler className="text-6xl text-white" />,
-    title: "LKG",
-    subtitle: "(Level 2)",
-    age: "4 - 5 Years",
-    text: "LKG is the launchpad for literacy and arithmetic fluency, where children achieve controlled writing, counting and number writing up to 100, understanding Place Value, Addition and Multiplication, alongside reading and writing the Hindi Alphabets.",
+    title: "LKG/UKG",
+    // subtitle: "(Level 2)",
+    age: "4 - 6 Years",
+    text: "Pre-reading & writing skills, numbers, confidence building.",
   },
   {
     color: "from-sky-400 to-cyan-500",
     icon: <GiGraduateCap className="text-6xl text-white" />,
-    title: "UKG",
-    subtitle: "(Level 3)",
+    title: "Daycare Facility",
+    // subtitle: "(Level 3)",
     age: "5 - 6 Years",
-    text: "As the ultimate primary school readiness level, UKG students conquer abstract reasoning, counting to 1000, the concept of Subtraction, mastering global awareness and achieving fluent bilingual literacy (English and Hindi).",
+    text: "Flexible times, Hygienic meals & nap time indoor & outdoor activities.",
   },
 ];
 
