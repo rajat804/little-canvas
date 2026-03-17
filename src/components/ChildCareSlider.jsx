@@ -51,7 +51,7 @@ const ChildCareSlider = () => {
             >
               Welcome to <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600">
-                Little Canvas Pre-School
+                Golden Step  Preschool & Daycare
               </span>
             </motion.h1>
 
@@ -110,7 +110,7 @@ const ChildCareSlider = () => {
       </section>
 
       {/* Popup */}
-      <PopupForm isOpen={isPopupOpen} onClose={closePopup} />
+      {/* <PopupForm isOpen={isPopupOpen} onClose={closePopup} /> */}
     </>
   );
 };
