@@ -126,21 +126,21 @@ export default function ContactUs() {
               {
                 icon: <FaPhoneAlt />,
                 title: "Call Us",
-                info: "+91 9311550069",
+                info: "+91 0000000000",
                 sub: "Mon-Fri 9AM-6PM",
                 color: "from-green-400 to-emerald-500",
               },
               {
                 icon: <FaEnvelope />,
                 title: "Email Us",
-                info: "info@littlecanvasschool.com",
+                info: "example@gmail.com",
                 sub: "We reply within 24 hrs",
                 color: "from-purple-400 to-pink-500",
               },
               {
                 icon: <FaMapMarkerAlt />,
                 title: "Visit Us",
-                info: "Plot 78, River Heights, Rajnagar Extention,",
+                info: "address...",
                 sub: " Ghaziabad, UP, 201017",
                 color: "from-blue-400 to-cyan-500",
               },
@@ -266,7 +266,7 @@ export default function ContactUs() {
             {/* Responsive Container with 16:9 aspect ratio on mobile, full height on large screens */}
             <div className="relative w-full h-full pt-[56.25%] lg:pt-0 lg:h-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.574700125303!2d77.4161091!3d28.7023663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fe59d6ce61a77e3%3A0x5f08a423cf62e6e7!2sLittle%20Canvas%20Pre%20School!5e0!3m2!1sen!2sin!4v1766569247594!5m2!1sen!2sin"
+                src="https://www.google.com/maps?q=New+Delhi&output=embed"
                 className="absolute top-0 left-0 w-full h-full"
                 style={{ border: 0 }}
                 allowFullScreen=""
@@ -327,7 +327,7 @@ export default function ContactUs() {
           </motion.a>
         </div>
         <p className="mt-8 text-gray-600 text-lg">
-          Tag us @Littlecanvas — we love seeing your little ones shine! ✦
+          Tag us @GoldenStep — we love seeing your little ones shine! ✦
         </p>
       </section>
 
