@@ -21,7 +21,7 @@ export default function Footer() {
           >
             <div className="flex items-center gap-2">
               <img
-                src={assets.logo2}
+                src={assets.Logo}
                 alt="Logo"
                 className="w-80  rounded"
               />
