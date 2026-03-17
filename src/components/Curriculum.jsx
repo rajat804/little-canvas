@@ -22,12 +22,48 @@ import assets from "../assets/assets";
 const BACKGROUND_IMAGE = assets.learning2;
 
 const stages = [
-  { num: "01", title: "The Environment", desc: "The engaging materials in the lab trigger the child.", color: "from-cyan-400 to-blue-500", icon: <GiWorld /> },
-  { num: "02", title: "The Teacher", desc: "The teacher initiates the learning for the child.", color: "from-pink-400 to-rose-500", icon: <GiTeacher /> },
-  { num: "03", title: "Explore", desc: "The child has the liberty to explore in the school environment.", color: "from-green-400 to-emerald-500", icon: <GiMagnifyingGlass /> },
-  { num: "04", title: "Discover", desc: "When the child explores the classroom, they discover new learnings.", color: "from-orange-400 to-amber-500", icon: <GiLightBulb /> },
-  { num: "05", title: "Practice", desc: "The child has the liberty to practise and play.", color: "from-indigo-400 to-blue-600", icon: <GiCycle /> },
-  { num: "06", title: "Master", desc: "With more practice and play, they master the skill.", color: "from-yellow-400 to-orange-500", icon: <GiTrophy /> },
+  {
+    num: "01",
+    title: "COMMUNICATION",
+    desc: "Builds clear expression of thoughts and ideas.",
+    color: "from-cyan-400 to-blue-500",
+    icon: <GiWorld />,
+  },
+  {
+    num: "02",
+    title: "COMPASSION",
+    desc: "Encourages empathy, kindness, and respect for others.",
+    color: "from-pink-400 to-rose-500",
+    icon: <GiTeacher />,
+  },
+  {
+    num: "03",
+    title: "COLLABORATION",
+    desc: "Promotes teamwork and sharing through group activities.",
+    color: "from-green-400 to-emerald-500",
+    icon: <GiMagnifyingGlass />,
+  },
+  {
+    num: "04",
+    title: "CREATIVITY",
+    desc: "Inspires imagination and creative self-expression.",
+    color: "from-orange-400 to-amber-500",
+    icon: <GiLightBulb />,
+  },
+  {
+    num: "05",
+    title: "CRITICAL THINKING",
+    desc: "Develops problem-solving and decision-making skills.",
+    color: "from-indigo-400 to-blue-600",
+    icon: <GiCycle />,
+  },
+  {
+    num: "06",
+    title: "CONFIDENCE",
+    desc: "Builds self-belief through practice and growth.",
+    color: "from-yellow-400 to-orange-500",
+    icon: <GiTrophy />,
+  },
 ];
 
 const Card = ({ stage, angle, radius, isMobile }) => {
@@ -173,21 +209,45 @@ export default function Curriculum() {
           className="w-full max-w-4xl mt-24 px-6 sm:px-10 lg:px-16"
         >
           <h2 className="text-4xl sm:text-5xl font-black text-center text-white mb-10 drop-shadow-lg">
-            The Little Canvas Learning Process: Six Stages of Mastery
+            The Golden Step Learning Process: Six Stages of Mastery
           </h2>
 
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed text-center mb-16 max-w-3xl mx-auto drop-shadow">
-            The learning process at <span className="font-bold text-yellow-300">Little Canvas</span> is a continuous, six-stage cycle designed to foster independence and deep conceptual understanding, moving the child toward mastery of a skill.
+            The learning process at <span className="font-bold text-yellow-300">Golden Step</span> is a continuous, six-stage cycle designed to foster independence and deep conceptual understanding, moving the child toward mastery of a skill.
           </p>
 
           <div className="grid gap-10 md:gap-12">
             {[
-              { num: "1", title: "The Environment (Trigger)", desc: "The process begins with the physical space. The engaging materials in the Canvas lab act as a trigger, sparking the child's natural curiosity and desire to interact. The classrooms are carefully designed to help children learn by doing." },
-              { num: "2", title: "Explore", desc: "Once the environment is set, the child is given the liberty to explore the school environment. This stage supports the natural desire in every child to learn through doing and exploring." },
-              { num: "3", title: "Discover", desc: "As the child interacts with the materials and the classroom, they can discover new learnings. This is where the child's mind makes the connections on its own, initiating a deeper level of engagement." },
-              { num: "4", title: "The Teacher (Initiation)", desc: "At the appropriate point, the teacher steps in to initiate the learning for the child. The teacher acts as a guide, observing the child's progress daily and interfering only when it is needed to provide support or introduce the next step." },
-              { num: "5", title: "Practice", desc: "The child is then given the liberty to practice and play with the learning tools. The activities are built to help children spot and correct their own mistakes, fostering independence and self-reliance during this crucial repetition stage." },
-              { num: "6", title: "Master", desc: "The final stage is the achievement of the objective. With more practice and play, the child will master the skill. This process ensures the child achieves the end outcome defined by the curriculum and is ready to progress to the next concept." },
+              {
+                num: "1",
+                title: "COMMUNICATION",
+                desc: "Builds strong verbal and non-verbal skills, helping children express ideas, thoughts, and emotions clearly.",
+              },
+              {
+                num: "2",
+                title: "COMPASSION",
+                desc: "Encourages empathy and kindness, teaching children to understand others and build meaningful relationships.",
+              },
+              {
+                num: "3",
+                title: "COLLABORATION",
+                desc: "Promotes teamwork and cooperation, allowing children to share ideas and work together effectively.",
+              },
+              {
+                num: "4",
+                title: "CREATIVITY",
+                desc: "Inspires imagination and innovation, enabling children to express themselves through creative activities.",
+              },
+              {
+                num: "5",
+                title: "CRITICAL THINKING",
+                desc: "Develops problem-solving abilities, helping children analyze situations and make thoughtful decisions.",
+              },
+              {
+                num: "6",
+                title: "CONFIDENCE",
+                desc: "Builds self-belief and independence, empowering children to face challenges with confidence.",
+              },
             ].map((item, i) => (
               <motion.div
                 key={i}
