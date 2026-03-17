@@ -99,7 +99,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-green-800 text-sm text-center"
           >
-            © {new Date().getFullYear()} Little Canvas. All rights reserved.
+            © {new Date().getFullYear()} Golden Step. All rights reserved.
           </motion.div>
         </div>
 
