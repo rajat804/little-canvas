@@ -13,6 +13,7 @@ import why4 from "./why4.jpeg";
 import why5 from "./why5.jpeg";
 import why6 from "./why6.jpeg";
 import banner from "./banner.jpeg";
+import Logo from "./Logo.png";
 const assets = {
     logo,
     logo2,
@@ -28,7 +29,8 @@ const assets = {
     why5,
     why6,
     banner,
-    learning2
+    learning2,
+    Logo
 };
 
 export default assets;
