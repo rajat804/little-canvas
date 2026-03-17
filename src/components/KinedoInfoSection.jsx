@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"; // Assuming you're using React Router
 import { Sparkles, Heart, Shield, Users, Calendar, MessageCircle } from "lucide-react"; // Assuming lucide-react for icons
 
 const faqs = [
-  { q: "What makes Little Canvas different from other preschools?", a: "Little Canvas integrates the independence-focused Montessori Curriculum with the structured, hands-on learning of the Little Canvas Lab. This unique combination ensures children move from concrete practice to abstract mastery, delivering deep conceptual understanding far superior to standard rote learning.", icon: <Sparkles className="w-6 h-6" /> },
-  { q: "What exactly is the Little Canvas Lab, and how does my child use it?", a: "The Little Canvas Lab is a specialized, hands-on learning zone filled with hundreds of scientifically designed materials. Here, children work independently at their own pace, using the materials to physically discover and master core concepts in math, language, and life skills.", icon: <Heart className="w-6 h-6" /> },
+  { q: "What makes Golden Step different from other preschools?", a: "Golden Step integrates the independence-focused Montessori Curriculum with the structured, hands-on learning of the Golden Step Lab. This unique combination ensures children move from concrete practice to abstract mastery, delivering deep conceptual understanding far superior to standard rote learning.", icon: <Sparkles className="w-6 h-6" /> },
+  { q: "What exactly is the Golden Step Lab, and how does my child use it?", a: "The Golden Step Lab is a specialized, hands-on learning zone filled with hundreds of scientifically designed materials. Here, children work independently at their own pace, using the materials to physically discover and master core concepts in math, language, and life skills.", icon: <Heart className="w-6 h-6" /> },
   { q: "What is the fundamental principle of Montessori education?", a: "The core principle of Montessori education, based on the work of Dr. Maria Montessori, is to facilitate the child's natural desire to learn within a \"prepared environment,\" fostering independence, concentration, and self-discipline.", icon: <Shield className="w-6 h-6" /> },
-  { q: "Is the Little Canvas curriculum the same as the pure Montessori method?", a: "No. Little Canvas curriculum is Montessori-inspired but is an evolved, practical curriculum. It combines Montessori's independence principles with the structure and assessments needed to align with modern educational standards and ensure seamless readiness for primary school.", icon: <Users className="w-6 h-6" /> },
+  { q: "Is the Golden Step curriculum the same as the pure Montessori method?", a: "No. Golden Step curriculum is Montessori-inspired but is an evolved, practical curriculum. It combines Montessori's independence principles with the structure and assessments needed to align with modern educational standards and ensure seamless readiness for primary school.", icon: <Users className="w-6 h-6" /> },
   { q: "What does a typical day look like?", a: "Our daily routine blends structured classroom work, free play, and a dedicated hour of hands-on Canvas Lab exploration.", icon: <Calendar className="w-6 h-6" /> },
 ];
 
@@ -30,7 +30,7 @@ export default function KinedoInfoSection() {
           viewport={{ once: true }}
           className="text-[#4764c7] font-extrabold text-4xl sm:text-5xl text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
         >
-          Know More About Little Canvas
+          Know More About Golden Step
         </motion.h2>
 
         <div className="space-y-4">
