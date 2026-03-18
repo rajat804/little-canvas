@@ -1,16 +1,46 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { GiDiamondHard, GiBrain, GiHeartInside, GiStarSwirl } from "react-icons/gi";
-import { FaRegGem, FaRocket, FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import assets from "../assets/assets";
+import { 
+  GiDiamondHard, 
+  GiBrain, 
+  GiHeartInside,
+  GiSparkles,
+  GiStarSwirl,
+  GiFlowerTwirl,
+  GiPencil,
+  GiPaintBrush,
+  GiBalloons
+} from "react-icons/gi";
+import { 
+  FaRegGem, 
+  FaRocket, 
+  FaHeart, 
+  FaStar, 
+  FaLeaf,
+  FaSun,
+  FaChild,
+  FaPaintBrush,
+  FaBookOpen
+} from "react-icons/fa";
+import { MdVerified, MdSchool } from "react-icons/md";
+import { RiPlayCircleFill } from "react-icons/ri";
 import PopupForm from "./PopupForm";
 
-// New High-quality images
+// Unique child images - study, drawing, play karte hue
+// Sabki height-width same hai aur aspect ratio consistent
 const IMAGES = [
-  assets.why1, // Curriculum - Kids learning
-  assets.why4, // 6T Tech - Kids with technology
-  assets.why3, // Child-Centric - Happy kids
+  {
+    url: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=1000&q=80", // Child studying with book - square crop
+    alt: "Child studying with book"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=1000&q=80", // Child drawing/coloring - square crop
+    alt: "Child drawing with colors"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=1000&q=80", // Child playing with toys - square crop
+    alt: "Child playing with toys"
+  },
 ];
 
 const sections = [
@@ -18,408 +48,460 @@ const sections = [
     num: "01",
     icon: <GiDiamondHard />,
     icon2: <FaRegGem />,
-    title: "Superior, Outcome-Driven Curriculum",
-    desc: "Our curriculum is designed to go beyond simple play, focusing on delivering measurable academic outcomes:",
+    icon3: <GiSparkles />,
+    icon4: <FaBookOpen />,
+    title: "Superior Curriculum",
+    desc: "Montessori-inspired with modern updates for measurable outcomes.",
     points: [
-      "Montessori-Inspired & Modernized: We follow the Montessori way with modern updates to provide a scientifically backed learning environment.",
-      "Structured Excellence: We go beyond nursery rhymes and toy play by using a full, well-planned program for development where all materials match our clear educational goals.",
-      "Optimal Learning Ratio (1:15): We maintain a low 1:15 teacher-student ratio to ensure personalized attention, care, and quality educational guidance for every child.",
-      "Future Readiness: We aim to raise children who are academically equipped and socially adaptive for the future, committed to preparing them to educate themselves throughout their lives."
+      "Montessori-Inspired & Modernized",
+      "Structured Excellence",
+      "Optimal 1:15 Teacher Ratio",
+      "Future Readiness Focus"
     ],
-    gradient: "from-[#3B82F6] to-[#1E3A8A]", // Blue
+    gradient: "from-blue-500 to-indigo-600",
     lightGradient: "from-blue-50 to-indigo-50",
     iconColor: "text-blue-600",
+    bgPattern: "bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100 via-transparent to-transparent",
+    stats: "15+ Years",
+    imageIcon: "📚",
+    imageCaption: "Little learners exploring books",
   },
   {
     num: "02",
     icon: <GiBrain />,
     icon2: <FaRocket />,
-    title: "Integrated Methodology: The 6T Approach & Mobile App",
-    desc: "Our systematic 6T approach ensures consistent growth and skill mastery through the effective use of technology:",
+    icon3: <GiStarSwirl />,
+    icon4: <FaPaintBrush />,
+    title: "6T Learning Approach",
+    desc: "Systematic methodology with integrated technology.",
     points: [
-      <>
-        The <span className="relative group inline-block">
-          <span className="font-semibold text-[#3B82F6] cursor-help border-b-2 border-dotted border-[#3B82F6]">6T Learning Approach</span>
-          <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-80 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-[#1E293B] text-white text-sm rounded-xl py-3 px-4 pointer-events-none z-50 shadow-2xl border border-white/10">
-            <span className="font-bold block mb-2 text-[#F59E0B]">✨ 6T Learning Approach ✨</span>
-            <span className="block mb-1">🎮 <span className="font-semibold">Toys & Games</span> – fun tools to support learning</span>
-            <span className="block mb-1">📚 <span className="font-semibold">Theory</span> – what children need to know</span>
-            <span className="block mb-1">⏰ <span className="font-semibold">Timetable</span> – a planned daily routine</span>
-            <span className="block mb-1">👩‍🏫 <span className="font-semibold">Training</span> – our teachers are well-trained</span>
-            <span className="block mb-1">📱 <span className="font-semibold">Technology</span> – we use app and tools to help learning</span>
-            <span className="block">🤝 <span className="font-semibold">Teamwork</span> – we teach children to work and learn together</span>
-            <span className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-8 border-transparent border-t-[#1E293B]"></span>
-          </span>
-        </span>: Our 6T Learning Approach uses play to teach big ideas and includes rigorous Training for our teachers.
-      </>,
-      "Digital Skill Building: The 6T model integrates Technology through the Mobile App. This app helps children aged 2–6 build crucial skills in mathematics, reading, writing, phonics, and thinking, making daily learning fun and simple.",
-      "Traceable Growth: We use smart ways to track how children grow through daily observation and short assessments, ensuring progress is tracked consistently and accurately."
+      "Toys & Games based learning",
+      "Structured Theory & Timetable",
+      "Well-trained Teachers",
+      "Technology Integration"
     ],
-    gradient: "from-[#10B981] to-[#065F46]", // Green
+    gradient: "from-emerald-500 to-teal-600",
     lightGradient: "from-emerald-50 to-green-50",
     iconColor: "text-emerald-600",
+    bgPattern: "bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-100 via-transparent to-transparent",
+    stats: "6D Method",
+    imageIcon: "🎨",
+    imageCaption: "Creative minds at work",
   },
   {
     num: "03",
     icon: <GiHeartInside />,
     icon2: <FaHeart />,
+    icon3: <GiFlowerTwirl />,
+    icon4: <RiPlayCircleFill />,
     title: "Child-Centric Development",
-    desc: "We put the child at the center of the learning process, maximizing development during the critical early years:",
+    desc: "Every child learns at their own pace with guided discovery.",
     points: [
-      "Focus on the Child: We consciously focus on the child, not just the teacher, recognizing that the capacity to learn is highest between ages 2 to 6.",
-      "Independence and Confidence: Children learn to work hard with joy and purpose by being encouraged to explore and develop independence.",
-      "Character: We foster individuality and holistic growth, aspiring to empower every child with confidence and kindness.",
-      "Guided Discovery: Teachers act as guides, observing and supporting children daily, and only interfering when needed, to allow children to learn and explore by themselves."
+      "Focus on Individual Child",
+      "Build Independence & Confidence",
+      "Character Development",
+      "Guided Discovery Approach"
     ],
-    gradient: "from-[#EC4899] to-[#9D174D]", // Pink
+    gradient: "from-pink-500 to-rose-600",
     lightGradient: "from-pink-50 to-rose-50",
     iconColor: "text-pink-600",
+    bgPattern: "bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-100 via-transparent to-transparent",
+    stats: "100% Individual",
+    imageIcon: "🧸",
+    imageCaption: "Joyful play and discovery",
   }
 ];
 
+const fadeInUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { delay, duration: 0.6, ease: "easeOut" } },
+});
+
 export default function WhyChooseGoldenStep() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState(null);
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
 
   return (
     <>
-      <section className="relative bg-gradient-to-br from-[#F8FAFC] via-white to-[#F1F5F9] py-24 px-4 overflow-hidden">
+      <section className="relative py-24 px-4 bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
         
-        {/* Professional Background Elements */}
+        {/* Premium Background Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          <motion.div 
-            className="absolute top-20 left-10 w-64 h-64 bg-blue-200/20 rounded-full blur-3xl"
+          {/* Animated Orbs */}
+          <motion.div
             animate={{
-              scale: [1, 1.2, 1],
-              x: [0, 50, 0],
-              y: [0, -30, 0],
-            }}
-            transition={{ duration: 15, repeat: Infinity }}
-          />
-          <motion.div 
-            className="absolute bottom-20 right-10 w-64 h-64 bg-purple-200/20 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              x: [0, -50, 0],
-              y: [0, 30, 0],
+              scale: [1, 1.4, 1],
+              x: [0, 60, 0],
+              y: [0, -40, 0],
             }}
             transition={{ duration: 18, repeat: Infinity }}
+            className="absolute top-20 left-10 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl"
           />
+          <motion.div
+            animate={{
+              scale: [1.4, 1, 1.4],
+              x: [0, -60, 0],
+              y: [0, 40, 0],
+            }}
+            transition={{ duration: 20, repeat: Infinity }}
+            className="absolute bottom-20 right-10 w-80 h-80 bg-purple-200/30 rounded-full blur-3xl"
+          />
+          
+          {/* Floating Child Icons */}
+          <motion.div
+            animate={{ y: [0, -15, 0], rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 5, repeat: Infinity }}
+            className="absolute top-40 left-[15%] text-blue-300/20 text-4xl"
+          >
+            <FaChild />
+          </motion.div>
+          <motion.div
+            animate={{ y: [0, 15, 0], rotate: [0, -5, 5, 0] }}
+            transition={{ duration: 6, repeat: Infinity, delay: 1 }}
+            className="absolute bottom-40 right-[15%] text-pink-300/20 text-4xl"
+          >
+            <GiPaintBrush />
+          </motion.div>
+          
+          {/* Floating Particles */}
+          {[...Array(25)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{ 
+                x: Math.random() * 100 + "%", 
+                y: Math.random() * 100 + "%",
+                opacity: 0.1,
+                scale: Math.random() * 0.5 + 0.5
+              }}
+              animate={{ 
+                y: [null, Math.random() * 60 - 30],
+                opacity: [0.1, 0.3, 0.1],
+                rotate: [0, 180, 360],
+              }}
+              transition={{ 
+                duration: 8 + Math.random() * 8, 
+                repeat: Infinity,
+                delay: i * 0.2,
+              }}
+              className="absolute w-2 h-2 bg-gradient-to-r from-blue-400/30 to-purple-400/30 rounded-full"
+            />
+          ))}
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Hero Title */}
+          
+          {/* Enhanced Heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-16"
           >
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-block px-4 py-1.5 bg-[#1E293B] text-white text-sm font-semibold rounded-full mb-4"
+              className="inline-block px-4 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-full mb-4 shadow-lg"
             >
-              ⭐ Why Parents Love Us ⭐
+              ✦ WHY FAMILIES TRUST US ✦
             </motion.span>
             
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-gradient-to-r from-[#1E293B] via-[#3B82F6] to-[#1E293B] bg-clip-text leading-tight">
-              Why Choose Golden Step?
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-4">
+              Why Choose Us
             </h2>
             
-            <div className="h-1 w-24 bg-gradient-to-r from-[#3B82F6] to-[#10B981] rounded-full mx-auto mt-4"></div>
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "100px" }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full mx-auto"
+            />
             
-            <p className="mt-8 text-lg sm:text-xl text-[#475569] max-w-5xl mx-auto leading-relaxed px-4">
-              Choosing Golden Step means investing in a structured, future-focused educational foundation built on a proven philosophy and integrated with modern technology.
+            <p className="text-[#64748B] text-lg mt-6 max-w-2xl mx-auto">
+              Three powerful reasons why parents trust us with their child's early years
             </p>
           </motion.div>
 
-          {/* Responsive Cards with Images & Icons */}
-          <div className="grid gap-12 md:gap-16">
+          {/* Enhanced Cards - With Perfectly Sized Images */}
+          <div className="grid gap-10">
             {sections.map((sec, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.2 }}
+                variants={fadeInUp(idx * 0.2)}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
+                onHoverStart={() => setHoveredCard(idx)}
+                onHoverEnd={() => setHoveredCard(null)}
                 whileHover={{ y: -5 }}
-                className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100/80"
+                className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100/80"
               >
+                {/* Animated Gradient Border */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `linear-gradient(135deg, ${sec.gradient.split(' ')[1]}, ${sec.gradient.split(' ')[3]})`,
+                    padding: "2px",
+                    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                  }}
+                />
+
+                {/* Top Accent Line */}
+                <motion.div
+                  className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r ${sec.gradient} rounded-full`}
+                  whileHover={{ width: "80px" }}
+                  transition={{ duration: 0.3 }}
+                />
+
                 <div className="grid md:grid-cols-2">
-                  {/* Conditional Rendering: Reverse only for 2nd card (idx === 1) */}
-                  {idx === 1 ? (
-                    <>
-                      {/* Content (Left) */}
-                      <div className="p-8 lg:p-10 flex flex-col justify-center order-1 md:order-1 relative overflow-hidden">
-                        
-                        {/* Hover Background Effect */}
+                  {/* Image Side - Perfect Square Aspect Ratio */}
+                  <div className={`relative aspect-square md:h-full overflow-hidden group/image ${idx === 1 ? 'md:order-2' : ''}`}>
+                    <motion.img
+                      src={IMAGES[idx].url}
+                      alt={IMAGES[idx].alt}
+                      className="w-full h-full object-cover"
+                      animate={{ scale: hoveredCard === idx ? 1.15 : 1 }}
+                      transition={{ duration: 0.7 }}
+                    />
+                    
+                    {/* Gradient Overlay */}
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"
+                      animate={{ opacity: hoveredCard === idx ? 0.9 : 0.6 }}
+                    />
+                    
+                    {/* Number Badge with Animation */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      className="absolute top-6 left-6"
+                    >
+                      <div className="relative">
                         <motion.div
-                          className={`absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br ${sec.lightGradient} transition-opacity duration-500`}
-                          initial={{ x: "-100%" }}
-                          whileHover={{ x: 0 }}
-                          transition={{ duration: 0.5 }}
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                          className="absolute inset-0 rounded-full border border-white/30"
                         />
-                        
-                        <div className="relative z-10">
-                          {/* Header with Icon */}
-                          <motion.div 
-                            whileHover={{ x: 10 }}
-                            className={`flex items-center gap-4 mb-6 p-4 rounded-2xl bg-gradient-to-r ${sec.gradient} text-white shadow-xl w-fit`}
-                          >
-                            <motion.div 
-                              whileHover={{ scale: 1.2, rotate: 10 }}
-                              className="text-4xl"
-                            >
-                              {sec.icon}
-                            </motion.div>
-                            <div>
-                              <span className="text-sm font-semibold opacity-90">Section {sec.num}</span>
-                              <h3 className="text-2xl font-bold">{sec.title}</h3>
-                            </div>
-                            
-                            {/* Floating Icon */}
-                            <motion.div
-                              className="absolute -right-2 -top-2 text-2xl opacity-30"
-                              animate={{
-                                rotate: [0, 360],
-                                scale: [1, 1.2, 1],
-                              }}
-                              transition={{ duration: 10, repeat: Infinity }}
-                            >
-                              {sec.icon2}
-                            </motion.div>
-                          </motion.div>
-
-                          {/* Description */}
-                          <p className="text-base text-[#475569] mb-6 leading-relaxed">
-                            {sec.desc}
-                          </p>
-
-                          {/* Points */}
-                          <div className="space-y-4">
-                            {sec.points.map((point, i) => (
-                              <motion.div
-                                key={i}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.05 }}
-                                viewport={{ once: true }}
-                                whileHover={{ x: 5 }}
-                                className="flex items-start gap-3 group/item"
-                              >
-                                <motion.span 
-                                  whileHover={{ scale: 1.2, rotate: 10 }}
-                                  className={`text-xl mt-0.5 ${sec.iconColor} flex-shrink-0`}
-                                >
-                                  ✦
-                                </motion.span>
-                                <p className="text-[#334155] leading-relaxed flex-1 group-hover/item:text-[#1E293B] transition-colors">
-                                  {point}
-                                </p>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Image (Right) with Enhanced Hover */}
-                      <div className="relative h-80 md:h-full overflow-hidden group/image">
-                        <motion.img
-                          src={IMAGES[idx]}
-                          alt={sec.title}
-                          className="w-full h-full object-cover"
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ duration: 0.7 }}
-                        />
-                        
-                        {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover/image:opacity-80 transition-opacity duration-500"></div>
-                        
-                        {/* Number Badge */}
-                        <motion.div 
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl shadow-2xl"
-                        >
-                          <span className={`text-2xl font-black bg-gradient-to-r ${sec.gradient} bg-clip-text text-transparent`}>
+                        <div className="relative w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl font-black shadow-2xl">
+                          <span className={`bg-gradient-to-r ${sec.gradient} bg-clip-text text-transparent`}>
                             {sec.num}
                           </span>
-                        </motion.div>
-                        
-                        {/* Floating Icons on Image */}
-                        <motion.div
-                          className="absolute bottom-6 right-6 text-white text-3xl"
-                          animate={{
-                            y: [0, -10, 0],
-                            rotate: [0, 10, -10, 0],
-                          }}
-                          transition={{ duration: 4, repeat: Infinity }}
-                        >
-                          {sec.icon2}
-                        </motion.div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      {/* Image (Left) with Enhanced Hover */}
-                      <div className="relative h-80 md:h-full overflow-hidden group/image">
-                        <motion.img
-                          src={IMAGES[idx]}
-                          alt={sec.title}
-                          className="w-full h-full object-cover"
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ duration: 0.7 }}
-                        />
-                        
-                        {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover/image:opacity-80 transition-opacity duration-500"></div>
-                        
-                        {/* Number Badge */}
-                        <motion.div 
-                          initial={{ opacity: 0, x: 20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl shadow-2xl"
-                        >
-                          <span className={`text-2xl font-black bg-gradient-to-r ${sec.gradient} bg-clip-text text-transparent`}>
-                            {sec.num}
-                          </span>
-                        </motion.div>
-                        
-                        {/* Floating Icons on Image */}
-                        <motion.div
-                          className="absolute bottom-6 left-6 text-white text-3xl"
-                          animate={{
-                            y: [0, -10, 0],
-                            rotate: [0, -10, 10, 0],
-                          }}
-                          transition={{ duration: 4, repeat: Infinity }}
-                        >
-                          {sec.icon2}
-                        </motion.div>
-                      </div>
-
-                      {/* Content (Right) */}
-                      <div className="p-8 lg:p-10 flex flex-col justify-center relative overflow-hidden">
-                        
-                        {/* Hover Background Effect */}
-                        <motion.div
-                          className={`absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br ${sec.lightGradient} transition-opacity duration-500`}
-                          initial={{ x: "100%" }}
-                          whileHover={{ x: 0 }}
-                          transition={{ duration: 0.5 }}
-                        />
-                        
-                        <div className="relative z-10">
-                          {/* Header with Icon */}
-                          <motion.div 
-                            whileHover={{ x: -10 }}
-                            className={`flex items-center gap-4 mb-6 p-4 rounded-2xl bg-gradient-to-r ${sec.gradient} text-white shadow-xl w-fit`}
-                          >
-                            <motion.div 
-                              whileHover={{ scale: 1.2, rotate: -10 }}
-                              className="text-4xl"
-                            >
-                              {sec.icon}
-                            </motion.div>
-                            <div>
-                              <span className="text-sm font-semibold opacity-90">Section {sec.num}</span>
-                              <h3 className="text-2xl font-bold">{sec.title}</h3>
-                            </div>
-                            
-                            {/* Floating Icon */}
-                            <motion.div
-                              className="absolute -left-2 -top-2 text-2xl opacity-30"
-                              animate={{
-                                rotate: [0, -360],
-                                scale: [1, 1.2, 1],
-                              }}
-                              transition={{ duration: 10, repeat: Infinity }}
-                            >
-                              {sec.icon2}
-                            </motion.div>
-                          </motion.div>
-
-                          {/* Description */}
-                          <p className="text-base text-[#475569] mb-6 leading-relaxed">
-                            {sec.desc}
-                          </p>
-
-                          {/* Points */}
-                          <div className="space-y-4">
-                            {sec.points.map((point, i) => (
-                              <motion.div
-                                key={i}
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.05 }}
-                                viewport={{ once: true }}
-                                whileHover={{ x: -5 }}
-                                className="flex items-start gap-3 group/item"
-                              >
-                                <motion.span 
-                                  whileHover={{ scale: 1.2, rotate: -10 }}
-                                  className={`text-xl mt-0.5 ${sec.iconColor} flex-shrink-0`}
-                                >
-                                  ✦
-                                </motion.span>
-                                <p className="text-[#334155] leading-relaxed flex-1 group-hover/item:text-[#1E293B] transition-colors">
-                                  {point}
-                                </p>
-                              </motion.div>
-                            ))}
-                          </div>
                         </div>
                       </div>
-                    </>
-                  )}
+                    </motion.div>
+
+                    {/* Floating Activity Icons - Matching the image activity */}
+                    <motion.div
+                      animate={{
+                        y: [0, -15, 0],
+                        rotate: [0, 10, -10, 0],
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                      className="absolute top-6 right-6 text-white text-5xl drop-shadow-2xl"
+                    >
+                      {idx === 0 && "📚"}
+                      {idx === 1 && "🎨"}
+                      {idx === 2 && "🧸"}
+                    </motion.div>
+
+                    {/* Stats Badge with Activity Tag */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30"
+                    >
+                      <span className="text-white text-sm font-semibold flex items-center gap-2">
+                        <span>{sec.imageIcon}</span>
+                        {sec.stats}
+                      </span>
+                    </motion.div>
+
+                    {/* Image Caption */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                      className="absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-xl"
+                    >
+                      <span className="text-xs font-medium text-[#1E293B]">
+                        {sec.imageCaption}
+                      </span>
+                    </motion.div>
+                  </div>
+
+                  {/* Content Side with Enhanced Design */}
+                  <div className={`p-8 lg:p-10 ${idx === 1 ? 'md:order-1' : ''}`}>
+                    {/* Header with Icon */}
+                    <motion.div
+                      whileHover={{ x: idx === 1 ? -10 : 10 }}
+                      className={`inline-flex items-center gap-4 mb-6 p-4 rounded-2xl bg-gradient-to-r ${sec.gradient} text-white shadow-xl relative overflow-hidden group/header`}
+                    >
+                      {/* Shine Effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-white/30"
+                        initial={{ x: "-100%", skewX: "-20deg" }}
+                        whileHover={{ x: "200%", skewX: "-20deg" }}
+                        transition={{ duration: 0.8 }}
+                      />
+                      
+                      <motion.div
+                        whileHover={{ scale: 1.2, rotate: 10 }}
+                        className="text-3xl relative z-10"
+                      >
+                        {sec.icon}
+                      </motion.div>
+                      <div className="relative z-10">
+                        <span className="text-sm font-semibold opacity-90 block">Section {sec.num}</span>
+                        <h3 className="text-2xl font-bold">{sec.title}</h3>
+                      </div>
+                      
+                      {/* Floating Secondary Icon */}
+                      <motion.div
+                        animate={{
+                          rotate: [0, 360],
+                          scale: [1, 1.2, 1],
+                        }}
+                        transition={{ duration: 8, repeat: Infinity }}
+                        className="absolute -right-2 -top-2 text-2xl opacity-50"
+                      >
+                        {sec.icon4}
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Description with Verified Icon */}
+                    <div className="flex items-start gap-3 mb-6">
+                      <MdVerified className={`text-2xl ${sec.iconColor} flex-shrink-0 mt-1`} />
+                      <p className="text-[#475569] text-lg leading-relaxed">{sec.desc}</p>
+                    </div>
+
+                    {/* Points with Numbered Badges */}
+                    <div className="space-y-4 mb-8">
+                      {sec.points.map((point, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, x: idx === 1 ? 20 : -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                          whileHover={{ x: idx === 1 ? -5 : 5 }}
+                          className="flex items-start gap-3 group/point"
+                        >
+                          <motion.div
+                            whileHover={{ scale: 1.2, rotate: 10 }}
+                            className={`w-6 h-6 rounded-full bg-gradient-to-r ${sec.gradient} flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5 shadow-md`}
+                          >
+                            {i + 1}
+                          </motion.div>
+                          <span className="text-[#334155] group-hover/point:text-[#1E293B] transition-colors">
+                            {point}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Activity Tags - Matching Images */}
+                    <div className="flex flex-wrap gap-2">
+                      {idx === 0 && ["Reading", "Learning", "Discovery"].map((tag, i) => (
+                        <motion.span
+                          key={i}
+                          whileHover={{ scale: 1.05, y: -1 }}
+                          className={`px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${sec.lightGradient} text-[#475569] border border-gray-200`}
+                        >
+                          {tag}
+                        </motion.span>
+                      ))}
+                      {idx === 1 && ["Creative", "Artistic", "Imagination"].map((tag, i) => (
+                        <motion.span
+                          key={i}
+                          whileHover={{ scale: 1.05, y: -1 }}
+                          className={`px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${sec.lightGradient} text-[#475569] border border-gray-200`}
+                        >
+                          {tag}
+                        </motion.span>
+                      ))}
+                      {idx === 2 && ["Playful", "Social", "Happy"].map((tag, i) => (
+                        <motion.span
+                          key={i}
+                          whileHover={{ scale: 1.05, y: -1 }}
+                          className={`px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${sec.lightGradient} text-[#475569] border border-gray-200`}
+                        >
+                          {tag}
+                        </motion.span>
+                      ))}
+                    </div>
+
+                    {/* Corner Dots */}
+                    <motion.div
+                      className="absolute top-3 right-3 w-2 h-2 rounded-full bg-gray-200"
+                      whileHover={{ scale: 1.5, backgroundColor: sec.iconColor }}
+                      transition={{ duration: 0.2 }}
+                    />
+                    <motion.div
+                      className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-gray-200"
+                      whileHover={{ scale: 1.5, backgroundColor: sec.iconColor }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Final CTA */}
+          {/* Enhanced CTA */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center mt-24"
+            className="text-center mt-16"
           >
-            <motion.div 
-              whileHover={{ scale: 1.02 }}
-              className="inline-block bg-gradient-to-br from-[#1E293B] to-[#0F172A] rounded-3xl p-12 shadow-2xl border border-gray-800 relative overflow-hidden group"
-            >
+            <div className="relative inline-block">
               {/* Animated Background */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#3B82F6]/20 to-[#10B981]/20"
                 animate={{
-                  x: ["-100%", "100%"],
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.5, 0.3],
                 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -inset-4 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-full blur-2xl"
               />
-              
-              <h4 className="text-3xl sm:text-4xl font-extrabold text-white mb-6 relative z-10">
-                Ready to Give Your Child the Best Start?
-              </h4>
               
               <motion.button
                 onClick={openPopup}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-gradient-to-r from-[#3B82F6] to-[#10B981] text-white rounded-full font-bold text-xl shadow-2xl relative overflow-hidden group/btn"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative px-10 py-5 bg-gradient-to-r from-[#1E293B] to-[#0F172A] text-white font-semibold text-xl rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 group overflow-hidden"
               >
-                <span className="relative z-10">Book a Tour Today 🚀</span>
+                <span className="relative z-10 flex items-center gap-3">
+                  <FaStar className="text-yellow-400 group-hover:rotate-12 transition-transform" />
+                  Book a Tour Today
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
+                </span>
+                
+                {/* Shine Effect */}
                 <motion.div
-                  className="absolute inset-0 bg-white/30"
-                  initial={{ x: "-100%", skewX: "-20deg" }}
-                  whileHover={{ x: "200%", skewX: "-20deg" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "200%" }}
                   transition={{ duration: 0.8 }}
                 />
               </motion.button>
-            </motion.div>
+            </div>
+            
+            <p className="text-[#64748B] text-sm mt-4">
+              ✦ Limited seats available for the upcoming session ✦
+            </p>
           </motion.div>
         </div>
       </section>
