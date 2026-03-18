@@ -18,7 +18,6 @@ import {
 } from "react-icons/gi";
 import assets from "../assets/assets";
 
-// Replace with your own image or use this high-quality placeholder
 const BACKGROUND_IMAGE = assets.learning2;
 
 const stages = [
@@ -26,42 +25,48 @@ const stages = [
     num: "01",
     title: "COMMUNICATION",
     desc: "Builds clear expression of thoughts and ideas.",
-    color: "from-cyan-400 to-blue-500",
+    color: "from-[#3B82F6] to-[#1E3A8A]", // Blue
+    lightColor: "from-blue-400/30 to-blue-600/30",
     icon: <GiWorld />,
   },
   {
     num: "02",
     title: "COMPASSION",
     desc: "Encourages empathy, kindness, and respect for others.",
-    color: "from-pink-400 to-rose-500",
+    color: "from-[#EC4899] to-[#9D174D]", // Pink
+    lightColor: "from-pink-400/30 to-rose-600/30",
     icon: <GiTeacher />,
   },
   {
     num: "03",
     title: "COLLABORATION",
     desc: "Promotes teamwork and sharing through group activities.",
-    color: "from-green-400 to-emerald-500",
+    color: "from-[#10B981] to-[#065F46]", // Green
+    lightColor: "from-emerald-400/30 to-green-600/30",
     icon: <GiMagnifyingGlass />,
   },
   {
     num: "04",
     title: "CREATIVITY",
     desc: "Inspires imagination and creative self-expression.",
-    color: "from-orange-400 to-amber-500",
+    color: "from-[#F59E0B] to-[#B45309]", // Orange
+    lightColor: "from-amber-400/30 to-orange-600/30",
     icon: <GiLightBulb />,
   },
   {
     num: "05",
     title: "CRITICAL THINKING",
     desc: "Develops problem-solving and decision-making skills.",
-    color: "from-indigo-400 to-blue-600",
+    color: "from-[#8B5CF6] to-[#5B21B6]", // Purple
+    lightColor: "from-purple-400/30 to-violet-600/30",
     icon: <GiCycle />,
   },
   {
     num: "06",
     title: "CONFIDENCE",
     desc: "Builds self-belief through practice and growth.",
-    color: "from-yellow-400 to-orange-500",
+    color: "from-[#6366F1] to-[#3730A3]", // Indigo
+    lightColor: "from-indigo-400/30 to-blue-600/30",
     icon: <GiTrophy />,
   },
 ];
@@ -77,12 +82,34 @@ const Card = ({ stage, angle, radius, isMobile }) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true }}
-        className={`w-full max-w-xs mx-auto rounded-3xl p-6 bg-gradient-to-br ${stage.color} shadow-2xl text-white border-4 border-white/40 backdrop-blur-md`}
+        whileHover={{ y: -5, scale: 1.02 }}
+        className={`w-full max-w-xs mx-auto rounded-3xl p-6 bg-gradient-to-br ${stage.color} shadow-2xl text-white border-4 border-white/40 backdrop-blur-md relative overflow-hidden group`}
       >
-        <div className="text-5xl mb-4">{stage.icon}</div>
-        <h3 className="text-2xl font-bold mb-2">{stage.title}</h3>
+        {/* Animated Background Particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-16 h-16 bg-white/10 rounded-full blur-xl"
+              animate={{
+                x: [Math.random() * 200 - 100, Math.random() * 200 - 100],
+                y: [Math.random() * 200 - 100, Math.random() * 200 - 100],
+              }}
+              transition={{
+                duration: 8 + i * 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="text-5xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+          {stage.icon}
+        </div>
+        <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-300 transition-colors">{stage.title}</h3>
         <p className="text-sm opacity-90 leading-relaxed">{stage.desc}</p>
-        <div className="mt-5 w-12 h-12 bg-white/30 backdrop-blur rounded-full flex items-center justify-center font-bold text-xl border-2 border-white">
+        <div className="mt-5 w-12 h-12 bg-white/30 backdrop-blur rounded-full flex items-center justify-center font-bold text-xl border-2 border-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
           {stage.num}
         </div>
       </motion.div>
@@ -99,13 +126,37 @@ const Card = ({ stage, angle, radius, isMobile }) => {
       }}
     >
       <motion.div
-        whileHover={{ scale: 1.15 }}
-        className={`w-48 h-56 rounded-3xl p-5 bg-gradient-to-br ${stage.color} shadow-2xl text-white text-center border-4 border-white/40 flex flex-col justify-center items-center backdrop-blur-sm`}
+        whileHover={{ scale: 1.2, rotate: 5 }}
+        className={`w-48 h-56 rounded-3xl p-5 bg-gradient-to-br ${stage.color} shadow-2xl text-white text-center border-4 border-white/40 flex flex-col justify-center items-center backdrop-blur-sm relative overflow-hidden group`}
       >
-        <div className="text-3xl mb-3">{stage.icon}</div>
-        <h3 className="text-xl font-bold">{stage.title}</h3>
+        {/* Shine Effect */}
+        <motion.div
+          className="absolute inset-0 bg-white/30"
+          initial={{ x: "-100%", skewX: "-20deg" }}
+          whileHover={{ x: "200%", skewX: "-20deg" }}
+          transition={{ duration: 0.8 }}
+        />
+        
+        {/* Floating Particles */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            background: [
+              "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2) 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 80%, rgba(255,255,255,0.2) 0%, transparent 50%)",
+              "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.2) 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2) 0%, transparent 50%)",
+            ],
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+
+        <div className="text-3xl mb-3 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+          {stage.icon}
+        </div>
+        <h3 className="text-xl font-bold group-hover:text-yellow-300 transition-colors">{stage.title}</h3>
         <p className="text-sm mt-2 px-3 leading-tight">{stage.desc}</p>
-        <div className="mt-4 w-12 h-12 bg-white text-gray-800 rounded-full flex items-center justify-center font-bold text-xl">
+        <div className="mt-4 w-12 h-12 bg-white text-gray-800 rounded-full flex items-center justify-center font-bold text-xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
           {stage.num}
         </div>
       </motion.div>
@@ -134,105 +185,105 @@ export default function LearningProcess() {
         backgroundImage: `url(${BACKGROUND_IMAGE})`,
       }}
     >
-      {/* Dark Overlay for Readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
+      {/* Animated Gradient Overlay */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-br from-[#1E293B]/90 via-[#0F172A]/85 to-[#020617]/90"
+        animate={{
+          background: [
+            "linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.9) 50%, rgba(2,6,23,0.95) 100%)",
+            "linear-gradient(225deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.9) 50%, rgba(2,6,23,0.95) 100%)",
+            "linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.9) 50%, rgba(2,6,23,0.95) 100%)",
+          ],
+        }}
+        transition={{ duration: 10, repeat: Infinity }}
+      />
 
-      {/* Floating Decorations (Subtle over image) */}
-      <div className="absolute inset-0 pointer-events-none hidden lg:block opacity-70">
-        {/* LEFT SIDE */}
+      {/* Animated Floating Decorations */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Left Side Icons */}
         <motion.div
-          animate={{ y: [0, -80, 0], rotate: [0, 20, 0] }}
-          transition={{ duration: 22, repeat: Infinity }}
-          className="absolute left-4 top-20 text-purple-300"
+          animate={{ 
+            y: [0, -40, 0],
+            rotate: [0, 10, -10, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute left-[5%] top-[15%] text-blue-300/30"
         >
-          <GiButterfly className="text-9xl" />
+          <GiButterfly className="text-8xl" />
         </motion.div>
+        
         <motion.div
-          animate={{ y: [0, 100, 0], rotate: [0, -25, 0] }}
-          transition={{ duration: 28, repeat: Infinity }}
-          className="absolute left-12 top-96 text-pink-300"
+          animate={{ 
+            y: [0, 50, 0],
+            x: [0, 30, 0],
+            rotate: [0, 360],
+          }}
+          transition={{ duration: 12, repeat: Infinity }}
+          className="absolute left-[10%] top-[40%] text-purple-300/30"
         >
-          <GiSparkles className="text-8xl" />
+          <GiSparkles className="text-7xl" />
         </motion.div>
+        
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-          className="absolute left-8 top-64 text-yellow-200"
+          animate={{ 
+            y: [0, -30, 30, 0],
+            rotate: [0, -15, 15, 0],
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute left-[15%] bottom-[20%] text-pink-300/30"
         >
-          <GiStarShuriken className="text-7xl" />
+          <GiStarShuriken className="text-8xl" />
         </motion.div>
+
+        {/* Right Side Icons */}
         <motion.div
-          animate={{ y: [0, -60, 0] }}
-          transition={{ duration: 18, repeat: Infinity }}
-          className="absolute left-16 bottom-32 text-cyan-200"
+          animate={{ 
+            y: [0, 40, -20, 0],
+            rotate: [0, -20, 20, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 9, repeat: Infinity }}
+          className="absolute right-[8%] top-[25%] text-green-300/30"
         >
-          <GiBubbles className="text-10xl" />
+          <GiBubbles className="text-8xl" />
         </motion.div>
+        
         <motion.div
-          animate={{ y: [0, 70, 0], rotate: [0, 15, 0] }}
-          transition={{ duration: 25, repeat: Infinity }}
-          className="absolute left-6 top-1/2 text-green-200"
+          animate={{ 
+            y: [0, -50, 20, 0],
+            x: [0, -30, 30, 0],
+            rotate: [0, 360],
+          }}
+          transition={{ duration: 14, repeat: Infinity }}
+          className="absolute right-[12%] top-[60%] text-yellow-300/30"
+        >
+          <GiFeather className="text-7xl" />
+        </motion.div>
+        
+        <motion.div
+          animate={{ 
+            y: [0, 30, -40, 0],
+            rotate: [0, 25, -25, 0],
+          }}
+          transition={{ duration: 11, repeat: Infinity }}
+          className="absolute right-[5%] bottom-[15%] text-indigo-300/30"
         >
           <GiFlowerPot className="text-8xl" />
-        </motion.div>
-        <motion.div
-          animate={{ x: [-20, 20, -20] }}
-          transition={{ duration: 30, repeat: Infinity }}
-          className="absolute left-20 bottom-96 text-purple-200"
-        >
-          <GiFeather className="text-9xl rotate-12" />
-        </motion.div>
-
-        {/* RIGHT SIDE */}
-        <motion.div
-          animate={{ y: [0, -100, 0], rotate: [0, -20, 0] }}
-          transition={{ duration: 26, repeat: Infinity }}
-          className="absolute right-6 top-32 text-pink-300"
-        >
-          <GiButterfly className="text-9xl scale-x-[-1]" />
-        </motion.div>
-        <motion.div
-          animate={{ y: [0, 80, 0], rotate: [0, 25, 0] }}
-          transition={{ duration: 30, repeat: Infinity }}
-          className="absolute right-16 top-80 text-purple-300"
-        >
-          <GiSparkles className="text-8xl" />
-        </motion.div>
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
-          className="absolute right-12 top-96 text-yellow-200"
-        >
-          <GiStarShuriken className="text-7xl" />
-        </motion.div>
-        <motion.div
-          animate={{ y: [0, -70, 0] }}
-          transition={{ duration: 20, repeat: Infinity }}
-          className="absolute right-20 bottom-48 text-orange-200"
-        >
-          <GiBubbles className="text-10xl" />
-        </motion.div>
-        <motion.div
-          animate={{ y: [0, 90, 0], rotate: [0, -15, 0] }}
-          transition={{ duration: 24, repeat: Infinity }}
-          className="absolute right-8 top-1/3 text-indigo-200"
-        >
-          <GiFlowerPot className="text-8xl" />
-        </motion.div>
-        <motion.div
-          animate={{ x: [20, -20, 20] }}
-          transition={{ duration: 32, repeat: Infinity }}
-          className="absolute right-24 top-96 text-pink-200"
-        >
-          <GiFeather className="text-9xl -rotate-12" />
         </motion.div>
       </div>
 
-      {/* Content (on top of overlay) */}
+      {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
-        <h1 className="text-5xl sm:text-6xl font-black text-white mb-16 text-center leading-tight drop-shadow-xl">
+        <motion.h1 
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-5xl sm:text-6xl font-black text-white mb-16 text-center leading-tight drop-shadow-xl"
+        >
           Our Learning Process
-        </h1>
+        </motion.h1>
 
         {/* Circular / Mobile Layout */}
         {isMobile ? (
@@ -251,7 +302,7 @@ export default function LearningProcess() {
           <div className="relative w-full max-w-3xl aspect-square flex items-center justify-center mx-auto">
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0"
             >
               {stages.map((stage, i) => {
@@ -268,14 +319,29 @@ export default function LearningProcess() {
               })}
             </motion.div>
 
-            <div className="absolute w-64 h-64 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex flex-col items-center justify-center shadow-2xl text-white border-8 border-white/50 z-10 backdrop-blur-sm">
-              {/* <GiMagicLamp className="text-7xl mb-3 text-yellow-300 animate-pulse" /> */}
-              <p className="text-1xl font-bold">CURIOSITY</p>
-              <br />
-              <h2 className="text-3xl font-bold">iNteLLic</h2>
-              <br />
-              <p className="text-1xl font-bold">CONSCIOUSNESS</p>
-            </div>
+            {/* Center Circle */}
+            <motion.div 
+              className="absolute w-64 h-64 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-full flex flex-col items-center justify-center shadow-2xl text-white border-8 border-white/30 z-10 backdrop-blur-sm"
+              animate={{ 
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0 20px 40px -10px rgba(59,130,246,0.5)",
+                  "0 30px 60px -10px rgba(139,92,246,0.6)",
+                  "0 20px 40px -10px rgba(59,130,246,0.5)",
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full border-2 border-white/20"
+              />
+              <GiMagicLamp className="text-6xl mb-3 text-yellow-300 animate-pulse" />
+              <p className="text-sm font-bold tracking-wider">CURIOSITY</p>
+              <h2 className="text-2xl font-bold mt-1">iNteLLic</h2>
+              <p className="text-sm font-bold tracking-wider mt-1">CONSCIOUSNESS</p>
+            </motion.div>
           </div>
         )}
 
@@ -283,9 +349,24 @@ export default function LearningProcess() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
             className="mt-12 text-center text-white/90 font-medium text-lg px-6 drop-shadow"
           >
-            Swipe up to explore the full learning journey
+            <motion.span
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="inline-block"
+            >
+              👇
+            </motion.span>{" "}
+            Swipe up to explore the full learning journey{" "}
+            <motion.span
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+              className="inline-block"
+            >
+              👇
+            </motion.span>
           </motion.p>
         )}
 
@@ -303,43 +384,51 @@ export default function LearningProcess() {
 
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed text-center mb-16 max-w-3xl mx-auto drop-shadow">
             The learning process at{" "}
-            <span className="font-bold text-yellow-300">Golden Step</span> is
-            a continuous, six-stage cycle designed to foster independence and
+            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">
+              Golden Step
+            </span>{" "}
+            is a continuous, six-stage cycle designed to foster independence and
             deep conceptual understanding, moving the child toward mastery of a
             skill.
           </p>
 
-          <div className="grid gap-10 md:gap-12">
+          <div className="grid gap-6 md:gap-8">
             {[
               {
                 num: "1",
                 title: "COMMUNICATION",
                 desc: "Builds strong verbal and non-verbal skills, helping children express ideas, thoughts, and emotions clearly.",
+                color: "from-[#3B82F6] to-[#1E3A8A]",
               },
               {
                 num: "2",
                 title: "COMPASSION",
                 desc: "Encourages empathy and kindness, teaching children to understand others and build meaningful relationships.",
+                color: "from-[#EC4899] to-[#9D174D]",
               },
               {
                 num: "3",
                 title: "COLLABORATION",
                 desc: "Promotes teamwork and cooperation, allowing children to share ideas and work together effectively.",
+                color: "from-[#10B981] to-[#065F46]",
               },
               {
                 num: "4",
                 title: "CREATIVITY",
                 desc: "Inspires imagination and innovation, enabling children to express themselves through creative activities.",
+                color: "from-[#F59E0B] to-[#B45309]",
               },
               {
                 num: "5",
                 title: "CRITICAL THINKING",
                 desc: "Develops problem-solving abilities, helping children analyze situations and make thoughtful decisions.",
+                color: "from-[#8B5CF6] to-[#5B21B6]",
               },
               {
                 num: "6",
                 title: "CONFIDENCE",
                 desc: "Builds self-belief and independence, empowering children to face challenges with confidence.",
+                color: "from-[#6366F1] to-[#3730A3]",
               },
             ].map((item, i) => (
               <motion.div
@@ -348,21 +437,46 @@ export default function LearningProcess() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="group bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl"
+                whileHover={{ scale: 1.02, x: 10 }}
+                className="group bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer relative overflow-hidden"
               >
-                <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
-                  <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-black text-2xl shadow-xl border-4 border-white/50">
+                {/* Hover Gradient */}
+                <motion.div
+                  className={`absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r ${item.color}`}
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.5 }}
+                />
+                
+                <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 relative z-10">
+                  <motion.div 
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                    className={`flex-shrink-0 w-16 h-16 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center text-white font-black text-2xl shadow-xl border-4 border-white/50`}
+                  >
                     {item.num}
-                  </div>
+                  </motion.div>
                   <div className="flex-1">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors drop-shadow">
+                    <motion.h3 
+                      whileHover={{ x: 5 }}
+                      className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-yellow-200 transition-all duration-300 drop-shadow"
+                    >
                       {item.title}
-                    </h3>
+                    </motion.h3>
                     <p className="text-base sm:text-lg text-white/90 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
                 </div>
+
+                {/* Animated Corner Accent */}
+                <motion.div
+                  className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-br from-white/10 to-transparent rounded-tl-3xl"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
               </motion.div>
             ))}
           </div>
