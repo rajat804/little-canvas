@@ -1,13 +1,12 @@
-// ChildCareSlider.jsx
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FaBrain, FaBookOpen, FaSmile, FaHeart } from "react-icons/fa";
+import { FaSmile, FaHeart, FaStar, FaChild, FaLeaf } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import assets from "../assets/assets";
 import PopupForm from "./PopupForm";
 
-const BACKGROUND_IMAGE = assets.banner;
+const BACKGROUND_IMAGE = assets.heroInnerImage;
 
 const ChildCareSlider = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -24,7 +23,7 @@ const ChildCareSlider = () => {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center px-4 md:px-8 py-16 md:py-24 overflow-hidden mt-16"
+        className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center px-4 md:px-8 py-20 md:py-28 overflow-hidden mt-16"
         style={{
           backgroundImage: `url(${BACKGROUND_IMAGE})`,
           backgroundSize: "cover",
@@ -32,156 +31,267 @@ const ChildCareSlider = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Colorful Floating Blobs */}
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <div className="absolute top-10 left-10 w-40 h-40 bg-[#FF6B6B] rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-56 h-56 bg-[#4ECDC4] rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-[#FFE66D] rounded-full blur-3xl animate-pulse delay-500"></div>
-          <div className="absolute top-40 right-40 w-36 h-36 bg-[#FF8C42] rounded-full blur-3xl animate-pulse delay-700"></div>
-          <div className="absolute bottom-40 left-20 w-48 h-48 bg-[#A06AB4] rounded-full blur-3xl animate-pulse delay-300"></div>
+        {/* Premium Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"></div>
+        
+        {/* Animated Gradient Overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-blue-900/20"
+          animate={{
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+
+        {/* Floating Orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 20, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute top-20 left-[10%] w-32 h-32 bg-blue-400/20 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              y: [0, 40, 0],
+              x: [0, -30, 0],
+              scale: [1.2, 1, 1.2],
+            }}
+            transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+            className="absolute bottom-20 right-[10%] w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              y: [0, -20, 0],
+              x: [0, -20, 20, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ duration: 12, repeat: Infinity, delay: 2 }}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-pink-400/20 rounded-full blur-3xl"
+          />
         </div>
 
-        {/* Content Wrapper with Brighter Background */}
-        <div className="relative z-10 max-w-6xl mx-auto text-center w-full px-4">
-          <div className="inline-block rounded-3xl px-6 sm:px-10 py-10 sm:py-14 bg-white/20 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-white/30">
-            
-            {/* Small Tagline */}
+        {/* Floating Particles */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(20)].map((_, i) => (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
-              className="mb-4"
+              key={i}
+              initial={{ 
+                x: Math.random() * window.innerWidth, 
+                y: Math.random() * window.innerHeight,
+                opacity: 0 
+              }}
+              animate={{ 
+                y: [null, -30, 30, -30, 0],
+                opacity: [0.2, 0.5, 0.2],
+              }}
+              transition={{ 
+                duration: 5 + Math.random() * 5, 
+                repeat: Infinity,
+                delay: i * 0.2,
+              }}
+              className="absolute w-1 h-1 bg-white/30 rounded-full"
+            />
+          ))}
+        </div>
+
+        {/* Content Wrapper */}
+        <div className="relative z-20 max-w-6xl mx-auto text-center w-full px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="inline-block"
+          >
+            {/* Animated Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-8 inline-block"
             >
-              <span className="inline-block px-6 py-2 bg-gradient-to-r from-[#FF8C42] to-[#FF6B6B] text-white font-semibold rounded-full text-sm sm:text-base shadow-lg">
-                ✨ Where Learning Feels Like Play ✨
-              </span>
+              <div className="relative">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 rounded-full border border-white/20"
+                />
+                <span className="relative px-6 py-2.5 bg-white/10 backdrop-blur-md text-white text-sm font-medium tracking-[0.2em] rounded-full border border-white/30 inline-block shadow-2xl">
+                  ✦ EST. 2010 ✦
+                </span>
+              </div>
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: -50 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#2D4059] mb-6 leading-tight"
+            {/* Main Heading with Staggered Animation */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={heroInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Welcome to <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B6B] via-[#FF8C42] to-[#4ECDC4]">
-                Golden Step
-              </span>
-              <br />
-              <span className="text-3xl sm:text-4xl md:text-5xl text-[#2D4059]">
-                Preschool & Daycare
-              </span>
-            </motion.h1>
+              <h1 className="font-['Playfair_Display'] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+                <motion.span
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={heroInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="block"
+                >
+                  Where Little
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={heroInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="block"
+                >
+                  Minds{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 relative">
+                    Grow Big
+                    <motion.span
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="absolute -top-6 -right-8 text-3xl"
+                    >
+                      ✦
+                    </motion.span>
+                  </span>
+                </motion.span>
+              </h1>
+            </motion.div>
 
+            {/* Description with Fade */}
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="text-lg sm:text-xl md:text-2xl text-[#2D4059] mb-10 max-w-4xl mx-auto leading-relaxed font-medium bg-white/30 backdrop-blur-sm p-6 rounded-2xl"
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light mb-12 drop-shadow-lg"
             >
-              <span className="block mb-2">🎨 Little hands. Bright beginnings. Big discoveries. 🎨</span>
-              Through thoughtfully designed, activity-based learning, we nurture curious
-              minds, confident hearts, and joyful learners—helping every child
-              color their own story.
+              Where curiosity meets care, and every day brings new adventures in learning.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={heroInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row justify-center gap-4"
-            >
-              <Link to="/learning-process">
-                <button className="px-8 py-4 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 hover:rotate-1 transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2">
-                  <span>🔬</span>
-                  Discover Our Scientific Curriculum
-                  <span>✨</span>
-                </button>
-              </Link>
-
-              <button
-                onClick={openPopup}
-                className="px-8 py-4 bg-gradient-to-r from-[#FF6B6B] to-[#FF8C42] text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-rotate-1 transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2"
-              >
-                <span>📝</span>
-                Admission Enquiry
-                <span>🎈</span>
-              </button>
-            </motion.div>
-
-            {/* Features Pills */}
+            {/* Buttons with Elegant Hover */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="flex flex-col sm:flex-row justify-center gap-5"
+            >
+              <Link to="/learning-process">
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative px-8 py-4 bg-white text-[#1E293B] font-semibold text-lg rounded-xl shadow-2xl overflow-hidden w-full sm:w-auto"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Your child's journey
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      →
+                    </motion.span>
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-100 to-purple-100"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </motion.button>
+              </Link>
+
+              <motion.button
+                onClick={openPopup}
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-8 py-4 bg-transparent border-2 border-white/40 text-white font-semibold text-lg rounded-xl overflow-hidden backdrop-blur-sm w-full sm:w-auto"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <FaHeart className="text-pink-300" />
+                  Book a visit
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-white/20"
+                  initial={{ y: "100%" }}
+                  whileHover={{ y: 0 }}
+                  transition={{ duration: 0.4 }}
+                />
+              </motion.button>
+            </motion.div>
+
+            {/* Stats with Counter Animation */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={heroInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-wrap justify-center gap-3 mt-8"
+              className="flex flex-wrap justify-center gap-8 mt-16"
             >
               {[
-                { icon: "🧸", text: "Play-Based Learning" },
-                { icon: "🎨", text: "Creative Arts" },
-                { icon: "📚", text: "Early Literacy" },
-                { icon: "🧮", text: "Math Skills" },
-                { icon: "🌱", text: "Social Growth" },
-              ].map((item, index) => (
-                <div
+                { icon: <FaStar />, value: "15+", label: "Years" },
+                { icon: <FaChild />, value: "500+", label: "Children" },
+                { icon: <FaLeaf />, value: "1:8", label: "Ratio" },
+              ].map((stat, index) => (
+                <motion.div
                   key={index}
-                  className="px-4 py-2 bg-white/30 backdrop-blur-sm rounded-full text-[#2D4059] font-medium text-sm shadow-lg border border-white/40"
+                  whileHover={{ y: -5 }}
+                  className="text-center"
                 >
-                  {item.icon} {item.text}
-                </div>
+                  <div className="text-2xl text-white/80 mb-2">{stat.icon}</div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={heroInView ? { scale: 1 } : {}}
+                    transition={{ delay: 0.9 + index * 0.1, type: "spring" }}
+                    className="text-2xl font-bold text-white"
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <div className="text-sm text-white/60">{stat.label}</div>
+                </motion.div>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Floating Fun Icons */}
-        <motion.div
-          animate={{ 
-            y: [0, -20, 0],
-            rotate: [0, 10, 0]
-          }}
-          transition={{ repeat: Infinity, duration: 4 }}
-          className="absolute top-1/4 left-4 md:left-10 text-[#FF6B6B] text-5xl md:text-6xl opacity-80 drop-shadow-lg"
-        >
-          🧸
-        </motion.div>
+        {/* Decorative Bottom Wave */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full h-auto">
+            <path
+              fill="rgba(255,255,255,0.1)"
+              fillOpacity="0.2"
+              d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+            >
+              <animate
+                attributeName="d"
+                dur="10s"
+                values="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z;
+                        M0,96L80,90.7C160,85,320,75,480,74.7C640,75,800,85,960,80C1120,75,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z;
+                        M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+                repeatCount="indefinite"
+              />
+            </path>
+          </svg>
+        </div>
 
+        {/* Scroll Indicator */}
         <motion.div
-          animate={{ 
-            y: [0, 20, 0],
-            rotate: [0, -10, 0]
-          }}
-          transition={{ repeat: Infinity, duration: 5, delay: 1 }}
-          className="absolute bottom-1/3 right-4 md:right-10 text-[#4ECDC4] text-5xl md:text-6xl opacity-80 drop-shadow-lg"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 text-sm flex flex-col items-center gap-2"
         >
-          🎨
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            x: [0, 20, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ repeat: Infinity, duration: 6, delay: 2 }}
-          className="absolute top-1/3 right-20 text-[#FFE66D] text-4xl md:text-5xl opacity-80 drop-shadow-lg"
-        >
-          ⭐
-        </motion.div>
-
-        <motion.div
-          animate={{ 
-            x: [0, -20, 0],
-            rotate: [0, 360, 360]
-          }}
-          transition={{ repeat: Infinity, duration: 8 }}
-          className="absolute bottom-1/4 left-20 text-[#A06AB4] text-4xl md:text-5xl opacity-80 drop-shadow-lg"
-        >
-          🦄
+          <span>Scroll</span>
+          <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-1 h-2 bg-white/60 rounded-full mt-2"
+            />
+          </div>
         </motion.div>
       </section>
 
-      {/* Popup */}
-      {/* <PopupForm isOpen={isPopupOpen} onClose={closePopup} /> */}
+      <PopupForm isOpen={isPopupOpen} onClose={closePopup} />
     </>
   );
 };
