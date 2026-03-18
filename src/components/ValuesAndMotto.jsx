@@ -1,136 +1,203 @@
 import { motion } from "framer-motion";
+import { FaHeart, FaStar, FaLeaf, FaSun, FaMoon, FaCloud } from "react-icons/fa";
 
 const values = [
   {
     number: "01",
-    title: "Nurturing the Whole Child (Holistic Growth)",
-    text: "We commit to a full, well-planned program designed to ensure the child's overall development is met. This holistic focus cultivates essential life skills, critical thinking, and social skills.",
-    color: "from-[#3B82F6] to-[#1E3A8A]", // Blue gradient
-    lightColor: "from-blue-50 to-blue-100",
+    title: "Nurturing the Whole Child",
+    text: "We focus on overall development - cultivating life skills, critical thinking, and social abilities.",
+    color: "from-blue-500 to-indigo-600",
+    lightColor: "from-blue-50 to-indigo-50",
     icon: "🌱",
+    icon2: <FaLeaf className="text-green-400" />,
+    description: "Holistic growth in every aspect"
   },
   {
     number: "02",
-    title: "Joyful Exploration & Discovery",
-    text: "Our environment is a joyful and stimulating space where children have the liberty to explore the school and discover new learnings. We support the natural desire in every child to learn by doing and actively exploring the engaging materials.",
-    color: "from-[#10B981] to-[#065F46]", // Green gradient
-    lightColor: "from-emerald-50 to-green-100",
+    title: "Joyful Exploration",
+    text: "Children discover and learn naturally in a stimulating, happy environment.",
+    color: "from-emerald-500 to-teal-600",
+    lightColor: "from-emerald-50 to-teal-50",
     icon: "🔍",
+    icon2: <FaSun className="text-yellow-400" />,
+    description: "Learning through curiosity"
   },
   {
     number: "03",
     title: "Independent Mastery",
-    text: "Our goal is to ensure the child masters the skill through consistent practice and play. We prioritize self-reliance by building activities that help children spot and correct their own mistakes, allowing them to work independently without always relying on adults.",
-    color: "from-[#F59E0B] to-[#B45309]", // Orange gradient
-    lightColor: "from-amber-50 to-orange-100",
+    text: "Building self-reliance through practice, allowing children to learn at their own pace.",
+    color: "from-purple-500 to-violet-600",
+    lightColor: "from-purple-50 to-violet-50",
     icon: "🌟",
+    icon2: <FaStar className="text-yellow-400" />,
+    description: "Confidence through practice"
   },
   {
     number: "04",
     title: "Child-Centric Learning",
-    text: 'We operate on the principle: "We focus on the child, not just the teacher". Teachers act as skilled guides who are well-trained to meet each child\'s specific learning needs. They observe children daily, take notes, and ensure every child receives enough care and attention.',
-    color: "from-[#8B5CF6] to-[#5B21B6]", // Purple gradient
-    lightColor: "from-purple-50 to-violet-100",
+    text: "Teachers guide, observe, and support - children lead their learning journey.",
+    color: "from-pink-500 to-rose-600",
+    lightColor: "from-pink-50 to-rose-50",
     icon: "👧",
+    icon2: <FaHeart className="text-pink-400" />,
+    description: "Every child leads their path"
   },
   {
     number: "05",
-    title: "Confidence and Individuality",
-    text: "We celebrate the unique individuality of every child, prioritizing the development of their unique talents and interests. This personalized approach empowers them to reach their full potential with both confidence and kindness.",
-    color: "from-[#EC4899] to-[#9D174D]", // Pink gradient
-    lightColor: "from-pink-50 to-rose-100",
+    title: "Confidence & Individuality",
+    text: "Celebrating unique talents and building self-belief in every child.",
+    color: "from-orange-500 to-amber-600",
+    lightColor: "from-orange-50 to-amber-50",
     icon: "🦋",
+    icon2: <FaCloud className="text-blue-300" />,
+    description: "Unique talents shine bright"
   },
   {
     number: "06",
-    title: "Academic Preparedness (Future Readiness)",
-    text: "Our education is structured with clear goals to raise children who are academically equipped and socially adaptive for the future. We ensure learning is a means to prepare them for success throughout their lives.",
-    color: "from-[#6366F1] to-[#3730A3]", // Indigo gradient
-    lightColor: "from-indigo-50 to-blue-100",
+    title: "Future Readiness",
+    text: "Preparing children academically and socially for lifelong success.",
+    color: "from-indigo-500 to-blue-600",
+    lightColor: "from-indigo-50 to-blue-50",
     icon: "📚",
+    icon2: <FaMoon className="text-indigo-400" />,
+    description: "Prepared for tomorrow"
   },
 ];
 
+const fadeInUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { delay, duration: 0.6, ease: "easeOut" } },
+});
+
 export default function ValuesAndMotto() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-slate-50 via-white to-blue-50 flex flex-col items-center overflow-hidden relative">
+    <section className="py-24 px-4 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
       
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-20"></div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-100 rounded-full blur-3xl opacity-20"></div>
-      
+      {/* Premium Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Animated Orbs */}
+        <motion.div
+          animate={{
+            scale: [1, 1.4, 1],
+            x: [0, 60, 0],
+            y: [0, -40, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity }}
+          className="absolute -top-20 -left-20 w-80 h-80 bg-blue-200/30 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1.4, 1, 1.4],
+            x: [0, -60, 0],
+            y: [0, 40, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity }}
+          className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-200/30 rounded-full blur-3xl"
+        />
+        
+        {/* Floating Particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ 
+              x: Math.random() * 100 + "%", 
+              y: Math.random() * 100 + "%",
+              opacity: 0.1,
+              scale: Math.random() * 0.5 + 0.5
+            }}
+            animate={{ 
+              y: [null, Math.random() * 60 - 30],
+              opacity: [0.1, 0.3, 0.1],
+              rotate: [0, 180, 360],
+            }}
+            transition={{ 
+              duration: 8 + Math.random() * 8, 
+              repeat: Infinity,
+              delay: i * 0.2,
+            }}
+            className="absolute w-2 h-2 bg-gradient-to-r from-blue-400/30 to-purple-400/30 rounded-full"
+          />
+        ))}
+      </div>
+
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Heading with Animated Underline */}
-        <div className="text-center mb-16">
-          <motion.span 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        
+        {/* Enhanced Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-1 bg-[#1E293B]/5 text-[#1E293B] text-sm font-semibold rounded-full mb-4"
+            className="inline-block px-4 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-full mb-4 shadow-lg"
           >
-            Our Philosophy
+            ✦ GUIDING PRINCIPLES ✦
           </motion.span>
           
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold text-[#1E293B] mb-4"
-          >
-            Our Core Values
-          </motion.h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E293B] mb-4">
+            What We Believe
+          </h2>
           
-          <motion.div 
+          <motion.div
             initial={{ width: 0 }}
-            whileInView={{ width: "80px" }}
+            whileInView={{ width: "100px" }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-1 bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6] rounded-full mx-auto"
+            className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full mx-auto"
           />
           
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-[#64748B] text-lg mt-6 max-w-2xl mx-auto"
-          >
-            Six guiding principles that shape every moment of your child's journey with us
-          </motion.p>
-        </div>
+          <p className="text-[#64748B] text-lg mt-6 max-w-2xl mx-auto">
+            Six core values that shape every moment of your child's journey with us
+          </p>
+        </motion.div>
 
+        {/* Values Grid with Enhanced Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {values.map((item, idx) => (
             <motion.div
               key={item.number}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              variants={fadeInUp(idx * 0.1)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
               whileHover={{ 
-                y: -10,
+                y: -8,
                 transition: { duration: 0.3 }
               }}
-              className="group relative flex flex-col items-start p-8 rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100/80 cursor-pointer"
+              className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100/80 cursor-pointer"
             >
               {/* Animated Gradient Border */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${item.color} opacity-10`}></div>
-              </div>
-              
+              <motion.div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: `linear-gradient(135deg, ${item.color.split(' ')[1]}, ${item.color.split(' ')[3]})`,
+                  padding: "2px",
+                  WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  WebkitMaskComposite: "xor",
+                  maskComposite: "exclude",
+                }}
+              />
+
               {/* Top Accent Line */}
-              <motion.div 
-                className={`absolute top-0 left-1/2 transform -translate-x-1/2 h-1 w-0 bg-gradient-to-r ${item.color} rounded-full`}
-                whileHover={{ width: "80px" }}
+              <motion.div
+                className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r ${item.color} rounded-full`}
+                whileHover={{ width: "60px" }}
                 transition={{ duration: 0.3 }}
               />
-              
-              {/* Number Badge with Icon */}
-              <div className="flex items-center gap-3 mb-5">
+
+              {/* Header with Number and Icon */}
+              <div className="flex items-center justify-between mb-6">
                 <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className={`flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} text-white font-bold text-xl shadow-lg relative overflow-hidden`}
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  className={`relative w-14 h-14 rounded-xl bg-gradient-to-br ${item.color} text-white font-bold text-xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300`}
                 >
                   {/* Shine Effect */}
                   <motion.div
-                    className="absolute inset-0 bg-white/30"
+                    className="absolute inset-0 bg-white/30 rounded-xl"
                     initial={{ x: "-100%", skewX: "-20deg" }}
                     whileHover={{ x: "200%", skewX: "-20deg" }}
                     transition={{ duration: 0.8 }}
@@ -138,84 +205,108 @@ export default function ValuesAndMotto() {
                   {item.number}
                 </motion.div>
                 
-                {/* Floating Icon */}
-                <motion.span 
-                  className="text-3xl"
-                  animate={{ 
+                {/* Floating Secondary Icon */}
+                <motion.div
+                  animate={{
                     y: [0, -5, 0],
-                    rotate: [0, 5, -5, 0]
+                    rotate: [0, 5, -5, 0],
                   }}
-                  transition={{ 
-                    repeat: Infinity, 
-                    duration: 3,
-                    delay: idx * 0.2
-                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="text-3xl"
                 >
                   {item.icon}
-                </motion.span>
+                </motion.div>
               </div>
 
-              {/* Title with Hover Effect */}
-              <motion.h3 
-                className="text-xl font-bold text-[#1E293B] mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#1E293B] group-hover:to-[#4A5568] transition-all duration-300"
-              >
+              {/* Title with Gradient Hover */}
+              <h3 className="text-xl font-bold text-[#1E293B] mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#1E293B] group-hover:to-[#4A5568] transition-all duration-300">
                 {item.title}
-              </motion.h3>
+              </h3>
 
-              {/* Description */}
-              <p className="text-[#475569] text-base leading-relaxed font-medium group-hover:text-[#1E293B] transition-colors duration-300">
+              {/* Description Tagline */}
+              <p className="text-sm font-medium text-[#3B82F6] mb-3 opacity-80">
+                {item.description}
+              </p>
+
+              {/* Main Text */}
+              <p className="text-[#475569] text-base leading-relaxed mb-6">
                 {item.text}
               </p>
 
-              {/* Bottom Gradient Line on Hover */}
-              <motion.div
-                className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-3xl bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-100`}
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-              />
+              {/* Decorative Elements */}
+              <div className="flex items-center justify-between">
+                {/* Small Icons Row */}
+                <div className="flex gap-2">
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                      className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${item.color}`}
+                    />
+                  ))}
+                </div>
 
-              {/* Floating Particles on Hover */}
-              <motion.div
-                className="absolute -top-2 -right-2 w-16 h-16 rounded-full bg-gradient-to-br from-white/50 to-transparent blur-xl"
-                initial={{ opacity: 0, scale: 0 }}
-                whileHover={{ 
-                  opacity: 0.6, 
-                  scale: 1.5,
-                  x: [0, -5, 0],
-                  y: [0, -5, 0],
-                }}
-                transition={{ duration: 0.5 }}
-              />
-              <motion.div
-                className="absolute -bottom-2 -left-2 w-16 h-16 rounded-full bg-gradient-to-br from-white/50 to-transparent blur-xl"
-                initial={{ opacity: 0, scale: 0 }}
-                whileHover={{ 
-                  opacity: 0.6, 
-                  scale: 1.5,
-                  x: [0, 5, 0],
-                  y: [0, 5, 0],
-                }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              />
+                {/* Secondary Icon with Animation */}
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{ duration: 8, repeat: Infinity }}
+                  className="text-xl opacity-50 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  {item.icon2}
+                </motion.div>
+              </div>
 
               {/* Corner Accents */}
-              <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-gray-200 group-hover:bg-[#3B82F6] transition-colors duration-300"></div>
-              <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-gray-200 group-hover:bg-[#8B5CF6] transition-colors duration-300"></div>
+              <motion.div
+                className="absolute top-3 right-3 w-2 h-2 rounded-full bg-gray-200"
+                whileHover={{ scale: 1.5, backgroundColor: "#3B82F6" }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.div
+                className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-gray-200"
+                whileHover={{ scale: 1.5, backgroundColor: "#8B5CF6" }}
+                transition={{ duration: 0.2 }}
+              />
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom Tagline */}
+        {/* Bottom Quote */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-[#64748B] text-lg italic">
-            "These values aren't just words on a wall — they're lived every day in our classrooms."
-          </p>
+          <div className="relative inline-block">
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-xl"
+            />
+            <p className="relative text-lg text-[#475569] italic max-w-2xl mx-auto px-8">
+              "These values aren't just words on a wall — they're lived every day in our classrooms."
+            </p>
+          </div>
+          
+          {/* Signature Line */}
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "60px" }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4"
+          />
         </motion.div>
       </div>
     </section>
