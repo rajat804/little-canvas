@@ -8,14 +8,11 @@ import {
   GiLightBulb,
   GiCycle,
   GiTrophy,
-  GiMagicLamp,
-  GiButterfly,
   GiSparkles,
-  GiStarShuriken,
-  GiFlowerPot,
-  GiBubbles,
-  GiFeather,
+  GiStarSwirl,
+  GiFlowerTwirl,
 } from "react-icons/gi";
+import { FaHeart, FaStar, FaSun, FaMoon, FaCloud, FaLeaf } from "react-icons/fa";
 import assets from "../assets/assets";
 
 const BACKGROUND_IMAGE = assets.learning2;
@@ -24,69 +21,88 @@ const stages = [
   {
     num: "01",
     title: "COMMUNICATION",
-    desc: "Builds clear expression of thoughts and ideas.",
-    color: "from-[#3B82F6] to-[#1E3A8A]", // Blue
-    lightColor: "from-blue-400/30 to-blue-600/30",
-    icon: <GiWorld />,
+    desc: "Expressing thoughts and ideas clearly",
+    fullDesc: "Children learn to express themselves with confidence and clarity",
+    color: "from-blue-500 to-indigo-600",
+    lightColor: "from-blue-400/30 to-indigo-400/30",
+    icon: <GiWorld className="text-3xl" />,
+    icon2: <FaSun className="text-yellow-300" />,
+    position: 0,
   },
   {
     num: "02",
     title: "COMPASSION",
-    desc: "Encourages empathy, kindness, and respect for others.",
-    color: "from-[#EC4899] to-[#9D174D]", // Pink
-    lightColor: "from-pink-400/30 to-rose-600/30",
-    icon: <GiTeacher />,
+    desc: "Building empathy and kindness",
+    fullDesc: "Understanding others and building meaningful relationships",
+    color: "from-pink-500 to-rose-600",
+    lightColor: "from-pink-400/30 to-rose-400/30",
+    icon: <GiTeacher className="text-3xl" />,
+    icon2: <FaHeart className="text-pink-300" />,
+    position: 60,
   },
   {
     num: "03",
     title: "COLLABORATION",
-    desc: "Promotes teamwork and sharing through group activities.",
-    color: "from-[#10B981] to-[#065F46]", // Green
-    lightColor: "from-emerald-400/30 to-green-600/30",
-    icon: <GiMagnifyingGlass />,
+    desc: "Working together and sharing",
+    fullDesc: "Teamwork and cooperation through group activities",
+    color: "from-emerald-500 to-teal-600",
+    lightColor: "from-emerald-400/30 to-teal-400/30",
+    icon: <GiMagnifyingGlass className="text-3xl" />,
+    icon2: <FaLeaf className="text-green-300" />,
+    position: 120,
   },
   {
     num: "04",
     title: "CREATIVITY",
-    desc: "Inspires imagination and creative self-expression.",
-    color: "from-[#F59E0B] to-[#B45309]", // Orange
-    lightColor: "from-amber-400/30 to-orange-600/30",
-    icon: <GiLightBulb />,
+    desc: "Imagination and self-expression",
+    fullDesc: "Inspiring imagination through creative activities",
+    color: "from-orange-500 to-amber-600",
+    lightColor: "from-orange-400/30 to-amber-400/30",
+    icon: <GiLightBulb className="text-3xl" />,
+    icon2: <GiStarSwirl className="text-yellow-300" />,
+    position: 180,
   },
   {
     num: "05",
     title: "CRITICAL THINKING",
-    desc: "Develops problem-solving and decision-making skills.",
-    color: "from-[#8B5CF6] to-[#5B21B6]", // Purple
-    lightColor: "from-purple-400/30 to-violet-600/30",
-    icon: <GiCycle />,
+    desc: "Problem-solving and decision making",
+    fullDesc: "Developing analytical skills and thoughtful decisions",
+    color: "from-purple-500 to-violet-600",
+    lightColor: "from-purple-400/30 to-violet-400/30",
+    icon: <GiCycle className="text-3xl" />,
+    icon2: <GiFlowerTwirl className="text-purple-300" />,
+    position: 240,
   },
   {
     num: "06",
     title: "CONFIDENCE",
-    desc: "Builds self-belief through practice and growth.",
-    color: "from-[#6366F1] to-[#3730A3]", // Indigo
-    lightColor: "from-indigo-400/30 to-blue-600/30",
-    icon: <GiTrophy />,
+    desc: "Self-belief through achievement",
+    fullDesc: "Building self-esteem and independence",
+    color: "from-indigo-500 to-blue-600",
+    lightColor: "from-indigo-400/30 to-blue-400/30",
+    icon: <GiTrophy className="text-3xl" />,
+    icon2: <FaStar className="text-yellow-300" />,
+    position: 300,
   },
 ];
 
-const Card = ({ stage, angle, radius, isMobile }) => {
+const Card = ({ stage, angle, radius, isMobile, index, total }) => {
   const x = radius * Math.cos((angle * Math.PI) / 180);
   const y = radius * Math.sin((angle * Math.PI) / 180);
+  const [isHovered, setIsHovered] = useState(false);
 
   if (isMobile) {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
         viewport={{ once: true }}
         whileHover={{ y: -5, scale: 1.02 }}
-        className={`w-full max-w-xs mx-auto rounded-3xl p-6 bg-gradient-to-br ${stage.color} shadow-2xl text-white border-4 border-white/40 backdrop-blur-md relative overflow-hidden group`}
+        className={`w-full max-w-md mx-auto rounded-2xl p-6 bg-gradient-to-br ${stage.color} text-white shadow-xl relative overflow-hidden group cursor-pointer`}
       >
         {/* Animated Background Particles */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0">
           {[...Array(3)].map((_, i) => (
             <motion.div
               key={i}
@@ -104,205 +120,329 @@ const Card = ({ stage, angle, radius, isMobile }) => {
           ))}
         </div>
 
-        <div className="text-5xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-          {stage.icon}
-        </div>
-        <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-300 transition-colors">{stage.title}</h3>
-        <p className="text-sm opacity-90 leading-relaxed">{stage.desc}</p>
-        <div className="mt-5 w-12 h-12 bg-white/30 backdrop-blur rounded-full flex items-center justify-center font-bold text-xl border-2 border-white group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-          {stage.num}
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-4">
+            <motion.div
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              className="text-4xl"
+            >
+              {stage.icon}
+            </motion.div>
+            <span className="text-2xl">{stage.icon2}</span>
+          </div>
+          <h3 className="text-xl font-bold mb-2 group-hover:text-yellow-300 transition-colors">{stage.title}</h3>
+          <p className="text-sm opacity-90 mb-3">{stage.desc}</p>
+          <p className="text-xs opacity-80 italic">{stage.fullDesc}</p>
+          
+          {/* Progress Indicator */}
+          <div className="mt-4 flex gap-1">
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
+                className="w-1 h-1 bg-white rounded-full"
+              />
+            ))}
+          </div>
         </div>
       </motion.div>
     );
   }
 
   return (
-    <div
+    <motion.div
       className="absolute"
       style={{
         left: `calc(50% + ${x}px)`,
         top: `calc(50% + ${y}px)`,
-        transform: `translate(-50%, -50%) rotate(${-angle}deg)`,
+        transform: `translate(-50%, -50%)`,
       }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
       <motion.div
-        whileHover={{ scale: 1.2, rotate: 5 }}
-        className={`w-48 h-56 rounded-3xl p-5 bg-gradient-to-br ${stage.color} shadow-2xl text-white text-center border-4 border-white/40 flex flex-col justify-center items-center backdrop-blur-sm relative overflow-hidden group`}
+        whileHover={{ scale: 1.15, rotate: 5 }}
+        className={`relative w-44 h-44 rounded-2xl p-4 bg-gradient-to-br ${stage.color} shadow-2xl text-white flex flex-col items-center justify-center text-center backdrop-blur-sm cursor-pointer group`}
       >
         {/* Shine Effect */}
         <motion.div
-          className="absolute inset-0 bg-white/30"
+          className="absolute inset-0 bg-white/30 rounded-2xl"
           initial={{ x: "-100%", skewX: "-20deg" }}
           whileHover={{ x: "200%", skewX: "-20deg" }}
           transition={{ duration: 0.8 }}
         />
-        
-        {/* Floating Particles */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.2) 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 80%, rgba(255,255,255,0.2) 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.2) 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2) 0%, transparent 50%)",
-            ],
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
 
-        <div className="text-3xl mb-3 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
-          {stage.icon}
-        </div>
-        <h3 className="text-xl font-bold group-hover:text-yellow-300 transition-colors">{stage.title}</h3>
-        <p className="text-sm mt-2 px-3 leading-tight">{stage.desc}</p>
-        <div className="mt-4 w-12 h-12 bg-white text-gray-800 rounded-full flex items-center justify-center font-bold text-xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+        {/* Floating Particles on Hover */}
+        {isHovered && (
+          <>
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1, 0],
+                  x: Math.random() * 40 - 20,
+                  y: Math.random() * 40 - 20,
+                }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                className="absolute w-1 h-1 bg-white rounded-full"
+              />
+            ))}
+          </>
+        )}
+
+        {/* Icon Container */}
+        <motion.div
+          animate={{ rotate: isHovered ? 360 : 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative"
+        >
+          <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">
+            {stage.icon}
+          </div>
+          
+          {/* Secondary Icon */}
+          <motion.div
+            animate={{
+              y: [0, -5, 0],
+              rotate: [0, 10, -10, 0],
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="absolute -top-3 -right-3 text-sm"
+          >
+            {stage.icon2}
+          </motion.div>
+        </motion.div>
+
+        {/* Title with Underline */}
+        <h3 className="text-sm font-bold mb-1 relative">
+          {stage.title}
+          <motion.div
+            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white/50"
+            initial={{ width: 0 }}
+            whileHover={{ width: "100%" }}
+            transition={{ duration: 0.3 }}
+          />
+        </h3>
+        
+        <p className="text-xs opacity-90 px-2">{stage.desc}</p>
+        
+        {/* Number Badge */}
+        <motion.div
+          animate={{ scale: isHovered ? 1.2 : 1 }}
+          className="absolute -top-2 -right-2 w-6 h-6 bg-white text-gray-800 rounded-full flex items-center justify-center text-xs font-bold shadow-lg"
+        >
           {stage.num}
+        </motion.div>
+
+        {/* Connecting Lines */}
+        <div className="absolute inset-0 pointer-events-none">
+          <svg width="100%" height="100%" className="absolute inset-0">
+            <line
+              x1="50%"
+              y1="50%"
+              x2={Math.cos((stage.position * Math.PI) / 180) * 80}
+              y2={Math.sin((stage.position * Math.PI) / 180) * 80}
+              stroke="rgba(255,255,255,0.2)"
+              strokeWidth="1"
+              strokeDasharray="4 4"
+            />
+          </svg>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
 export default function LearningProcess() {
   const [isMobile, setIsMobile] = useState(false);
+  const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    
+    const interval = setInterval(() => {
+      setRotation((prev) => (prev + 0.5) % 360);
+    }, 50);
+    
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      clearInterval(interval);
+    };
   }, []);
 
-  const radius = isMobile ? 0 : 250;
+  const radius = isMobile ? 0 : 200;
 
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center overflow-hidden py-16 px-4 bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(${BACKGROUND_IMAGE})`,
-      }}
+      className="relative min-h-screen flex flex-col items-center py-20 px-4 bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: `url(${BACKGROUND_IMAGE})` }}
     >
-      {/* Animated Gradient Overlay */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-[#1E293B]/90 via-[#0F172A]/85 to-[#020617]/90"
-        animate={{
-          background: [
-            "linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.9) 50%, rgba(2,6,23,0.95) 100%)",
-            "linear-gradient(225deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.9) 50%, rgba(2,6,23,0.95) 100%)",
-            "linear-gradient(135deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.9) 50%, rgba(2,6,23,0.95) 100%)",
-          ],
-        }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-
-      {/* Animated Floating Decorations */}
+      {/* Premium Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1E293B]/95 via-[#0F172A]/90 to-[#020617]/95"></div>
+      
+      {/* Animated Particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Left Side Icons */}
-        <motion.div
-          animate={{ 
-            y: [0, -40, 0],
-            rotate: [0, 10, -10, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute left-[5%] top-[15%] text-blue-300/30"
-        >
-          <GiButterfly className="text-8xl" />
-        </motion.div>
-        
-        <motion.div
-          animate={{ 
-            y: [0, 50, 0],
-            x: [0, 30, 0],
-            rotate: [0, 360],
-          }}
-          transition={{ duration: 12, repeat: Infinity }}
-          className="absolute left-[10%] top-[40%] text-purple-300/30"
-        >
-          <GiSparkles className="text-7xl" />
-        </motion.div>
-        
-        <motion.div
-          animate={{ 
-            y: [0, -30, 30, 0],
-            rotate: [0, -15, 15, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-          className="absolute left-[15%] bottom-[20%] text-pink-300/30"
-        >
-          <GiStarShuriken className="text-8xl" />
-        </motion.div>
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{
+              x: Math.random() * 100 + "%",
+              y: Math.random() * 100 + "%",
+              opacity: 0.1,
+            }}
+            animate={{
+              y: [null, Math.random() * 100 - 50],
+              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 10 + Math.random() * 10,
+              repeat: Infinity,
+              delay: i * 0.2,
+            }}
+            className="absolute w-1 h-1 bg-white/30 rounded-full"
+          />
+        ))}
+      </div>
 
-        {/* Right Side Icons */}
+      {/* Floating Orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          animate={{ 
-            y: [0, 40, -20, 0],
-            rotate: [0, -20, 20, 0],
-            scale: [1, 1.2, 1]
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
           }}
-          transition={{ duration: 9, repeat: Infinity }}
-          className="absolute right-[8%] top-[25%] text-green-300/30"
-        >
-          <GiBubbles className="text-8xl" />
-        </motion.div>
-        
+          transition={{ duration: 15, repeat: Infinity }}
+          className="absolute top-20 left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"
+        />
         <motion.div
-          animate={{ 
-            y: [0, -50, 20, 0],
-            x: [0, -30, 30, 0],
-            rotate: [0, 360],
+          animate={{
+            scale: [1.3, 1, 1.3],
+            x: [0, -50, 0],
+            y: [0, 30, 0],
           }}
-          transition={{ duration: 14, repeat: Infinity }}
-          className="absolute right-[12%] top-[60%] text-yellow-300/30"
-        >
-          <GiFeather className="text-7xl" />
-        </motion.div>
-        
-        <motion.div
-          animate={{ 
-            y: [0, 30, -40, 0],
-            rotate: [0, 25, -25, 0],
-          }}
-          transition={{ duration: 11, repeat: Infinity }}
-          className="absolute right-[5%] bottom-[15%] text-indigo-300/30"
-        >
-          <GiFlowerPot className="text-8xl" />
-        </motion.div>
+          transition={{ duration: 18, repeat: Infinity }}
+          className="absolute bottom-20 right-10 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"
+        />
       </div>
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
-        <motion.h1 
+        
+        {/* Enhanced Heading */}
+        <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl sm:text-6xl font-black text-white mb-16 text-center leading-tight drop-shadow-xl"
+          className="text-center mb-12"
         >
-          Our Learning Process
-        </motion.h1>
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block px-4 py-1.5 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-semibold rounded-full mb-4 shadow-lg"
+          >
+            ✦ OUR APPROACH ✦
+          </motion.span>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+            How We Nurture Learning
+          </h1>
+          
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "120px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full mx-auto"
+          />
+        </motion.div>
 
-        {/* Circular / Mobile Layout */}
+        {/* Learning Through Play Banner with Animation */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="relative mb-16"
+        >
+          {/* Animated Border */}
+          <motion.div
+            animate={{
+              scale: [1, 1.05, 1],
+              opacity: [0.5, 0.8, 0.5],
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="absolute -inset-1 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-3xl blur-xl"
+          />
+          
+          <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl px-8 py-5 shadow-2xl">
+            <p className="text-white text-xl md:text-3xl font-light tracking-wide">
+              Learning through{" "}
+              <motion.span
+                animate={{
+                  scale: [1, 1.1, 1],
+                  textShadow: [
+                    "0 0 8px rgba(255,255,255,0.5)",
+                    "0 0 16px rgba(255,255,255,0.8)",
+                    "0 0 8px rgba(255,255,255,0.5)",
+                  ],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300"
+              >
+                Play
+              </motion.span>
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Circle Layout with Enhanced Cards */}
         {isMobile ? (
-          <div className="w-full max-w-md space-y-8">
+          <div className="w-full max-w-md space-y-4">
             {stages.map((stage, i) => (
-              <Card
-                key={i}
-                stage={stage}
-                angle={0}
-                radius={0}
-                isMobile={true}
+              <Card 
+                key={i} 
+                stage={stage} 
+                angle={0} 
+                radius={0} 
+                isMobile={true} 
+                index={i}
+                total={stages.length}
               />
             ))}
           </div>
         ) : (
-          <div className="relative w-full max-w-3xl aspect-square flex items-center justify-center mx-auto">
+          <div className="relative w-full max-w-3xl aspect-square mx-auto">
+            {/* Rotating Ring */}
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0"
+            >
+              {/* Dashed Circle */}
+              <svg width="100%" height="100%" viewBox="0 0 500 500">
+                <circle
+                  cx="250"
+                  cy="250"
+                  r="200"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.1)"
+                  strokeWidth="2"
+                  strokeDasharray="10 10"
+                />
+              </svg>
+            </motion.div>
+
+            {/* Cards */}
+            <motion.div
+              animate={{ rotate: rotation }}
               className="absolute inset-0"
             >
               {stages.map((stage, i) => {
@@ -314,173 +454,85 @@ export default function LearningProcess() {
                     angle={angle}
                     radius={radius}
                     isMobile={false}
+                    index={i}
+                    total={stages.length}
                   />
                 );
               })}
             </motion.div>
 
-            {/* Center Circle */}
-            <motion.div 
-              className="absolute w-64 h-64 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-full flex flex-col items-center justify-center shadow-2xl text-white border-8 border-white/30 z-10 backdrop-blur-sm"
-              animate={{ 
+            {/* Center with Enhanced Design */}
+            <motion.div
+              animate={{
                 scale: [1, 1.05, 1],
                 boxShadow: [
                   "0 20px 40px -10px rgba(59,130,246,0.5)",
                   "0 30px 60px -10px rgba(139,92,246,0.6)",
                   "0 20px 40px -10px rgba(59,130,246,0.5)",
-                ]
+                ],
               }}
               transition={{ duration: 3, repeat: Infinity }}
+              className="absolute inset-0 flex items-center justify-center"
             >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border-2 border-white/20"
-              />
-              <GiMagicLamp className="text-6xl mb-3 text-yellow-300 animate-pulse" />
-              <p className="text-sm font-bold tracking-wider">CURIOSITY</p>
-              <h2 className="text-2xl font-bold mt-1">iNteLLic</h2>
-              <p className="text-sm font-bold tracking-wider mt-1">CONSCIOUSNESS</p>
+              <div className="relative w-40 h-40">
+                {/* Rotating Outer Ring */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 rounded-full border-2 border-white/20"
+                />
+                
+                {/* Inner Glow */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 blur-xl"
+                />
+                
+                {/* Main Center */}
+                <div className="relative w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-center p-4 shadow-2xl border-4 border-white/30">
+                  <div>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                      className="text-3xl mb-2"
+                    >
+                      🎯
+                    </motion.div>
+                    <div className="text-xs font-bold tracking-wider">
+                      <div>PLAY</div>
+                      <div className="my-1">•</div>
+                      <div>LEARN</div>
+                      <div className="my-1">•</div>
+                      <div>GROW</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         )}
 
+        {/* Mobile Swipe Indicator */}
         {isMobile && (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="mt-12 text-center text-white/90 font-medium text-lg px-6 drop-shadow"
+            transition={{ delay: 1 }}
+            className="mt-8 text-center"
           >
-            <motion.span
+            <motion.div
               animate={{ y: [0, 5, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="inline-block"
+              className="text-white/60 text-sm"
             >
-              👇
-            </motion.span>{" "}
-            Swipe up to explore the full learning journey{" "}
-            <motion.span
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-              className="inline-block"
-            >
-              👇
-            </motion.span>
-          </motion.p>
+              ↓ Swipe to explore ↓
+            </motion.div>
+          </motion.div>
         )}
-
-        {/* Detailed Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="w-full max-w-4xl mt-24 px-6 sm:px-10 lg:px-16"
-        >
-          <h2 className="text-4xl sm:text-5xl font-black text-center text-white mb-10 drop-shadow-lg">
-            The Golden Step Learning Process: Six Stages of Mastery
-          </h2>
-
-          <p className="text-lg sm:text-xl text-white/90 leading-relaxed text-center mb-16 max-w-3xl mx-auto drop-shadow">
-            The learning process at{" "}
-            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">
-              Golden Step
-            </span>{" "}
-            is a continuous, six-stage cycle designed to foster independence and
-            deep conceptual understanding, moving the child toward mastery of a
-            skill.
-          </p>
-
-          <div className="grid gap-6 md:gap-8">
-            {[
-              {
-                num: "1",
-                title: "COMMUNICATION",
-                desc: "Builds strong verbal and non-verbal skills, helping children express ideas, thoughts, and emotions clearly.",
-                color: "from-[#3B82F6] to-[#1E3A8A]",
-              },
-              {
-                num: "2",
-                title: "COMPASSION",
-                desc: "Encourages empathy and kindness, teaching children to understand others and build meaningful relationships.",
-                color: "from-[#EC4899] to-[#9D174D]",
-              },
-              {
-                num: "3",
-                title: "COLLABORATION",
-                desc: "Promotes teamwork and cooperation, allowing children to share ideas and work together effectively.",
-                color: "from-[#10B981] to-[#065F46]",
-              },
-              {
-                num: "4",
-                title: "CREATIVITY",
-                desc: "Inspires imagination and innovation, enabling children to express themselves through creative activities.",
-                color: "from-[#F59E0B] to-[#B45309]",
-              },
-              {
-                num: "5",
-                title: "CRITICAL THINKING",
-                desc: "Develops problem-solving abilities, helping children analyze situations and make thoughtful decisions.",
-                color: "from-[#8B5CF6] to-[#5B21B6]",
-              },
-              {
-                num: "6",
-                title: "CONFIDENCE",
-                desc: "Builds self-belief and independence, empowering children to face challenges with confidence.",
-                color: "from-[#6366F1] to-[#3730A3]",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02, x: 10 }}
-                className="group bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer relative overflow-hidden"
-              >
-                {/* Hover Gradient */}
-                <motion.div
-                  className={`absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-r ${item.color}`}
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.5 }}
-                />
-                
-                <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 relative z-10">
-                  <motion.div 
-                    whileHover={{ scale: 1.2, rotate: 10 }}
-                    className={`flex-shrink-0 w-16 h-16 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center text-white font-black text-2xl shadow-xl border-4 border-white/50`}
-                  >
-                    {item.num}
-                  </motion.div>
-                  <div className="flex-1">
-                    <motion.h3 
-                      whileHover={{ x: 5 }}
-                      className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-yellow-200 transition-all duration-300 drop-shadow"
-                    >
-                      {item.title}
-                    </motion.h3>
-                    <p className="text-base sm:text-lg text-white/90 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Animated Corner Accent */}
-                <motion.div
-                  className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-br from-white/10 to-transparent rounded-tl-3xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
