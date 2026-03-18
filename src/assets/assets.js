@@ -14,8 +14,10 @@ import why5 from "./why5.jpeg";
 import why6 from "./why6.jpeg";
 import banner from "./banner.jpeg";
 import GoldenStep from "./GoldenStep.png";
+import afterSchool from "./afterSchool.jpeg";
+import heroInnerImage from "./little-child-hero-image.webp";
 
-import afterSchool from "./afterSchool.jpeg"
+
 const assets = {
     logo,
     logo2,
@@ -33,7 +35,8 @@ const assets = {
     banner,
     learning2,
     GoldenStep,
-    afterSchool
+    afterSchool,
+    heroInnerImage
 };
 
 export default assets;
