@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
@@ -139,19 +138,20 @@ const programs = [
   {
     level: "Level 4",
     title: "Daycare Facility",
-    age: "2 - 6 Years",
+    age: "2 - 14 Years",
     icon: <MdChildCare className="w-14 h-14 sm:w-20 sm:h-20" />,
     gradient: "from-green-300 to-emerald-400",
     bg: "bg-green-50",
-    foundation: "Providing a safe, nurturing, and engaging environment for holistic child development beyond school hours.",
-    physical: "Encourages active play, rest routines, and healthy physical development through daily activities.",
-    socioEmotional: "Creates a caring environment where children feel secure, valued, and socially connected.",
+    foundation: "Providing a safe, nurturing, and engaging environment for holistic child development beyond school hours, catering to children up to 14 years of age with specialized care and academic support.",
+    physical: "Encourages active play, rest routines, and healthy physical development through daily activities appropriate for various age groups, including sports and recreational activities.",
+    socioEmotional: "Creates a caring environment where children feel secure, valued, and socially connected, with age-appropriate social interactions and mentorship opportunities.",
     cognitive: [
-      { icon: <GiBrain className="w-8 h-8 sm:w-10 sm:h-10 text-purple-600" />, title: "Activities", text: "Includes storytelling, games, and creative play to keep children engaged and learning." },
-      { icon: <GiPaintBrush className="w-8 h-8 sm:w-10 sm:h-10 text-pink-600" />, title: "Routine", text: "Follows structured daily routines including meals, rest, and playtime." },
-      { icon: <GiWorld className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600" />, title: "Environment", text: "Provides a safe, hygienic, and child-friendly environment with proper care." },
+      { icon: <GiBrain className="w-8 h-8 sm:w-10 sm:h-10 text-purple-600" />, title: "Activities", text: "Includes storytelling, games, creative play, homework assistance, project guidance, and skill-building workshops for older children." },
+      { icon: <GiPaintBrush className="w-8 h-8 sm:w-10 sm:h-10 text-pink-600" />, title: "Routine", text: "Follows structured daily routines including meals, rest, study time, recreational activities, and supervised homework sessions." },
+      { icon: <GiWorld className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600" />, title: "Environment", text: "Provides a safe, hygienic, and child-friendly environment with proper care, supervision, and age-appropriate learning resources." },
     ],
-    language: "Encourages communication through interaction, storytelling, and guided activities.",
+    language: "Encourages communication through interaction, storytelling, guided activities, and academic support for school-going children including English proficiency development.",
+    additional: "Specialized care for school-aged children including homework help, project guidance, extracurricular activities, and personality development programs. After-school care available until 8 PM with nutritious meals and transportation options.",
   },
 ];
 
@@ -236,11 +236,22 @@ const ProgramSection = ({ prog, idx }) => {
 
       {/* Hindi */}
       {prog.hindi && (
-        <div className="bg-orange-50 rounded-3xl p-4 sm:p-6 flex gap-3 sm:gap-4">
+        <div className="bg-orange-50 rounded-3xl p-4 sm:p-6 mb-5 sm:mb-6 flex gap-3 sm:gap-4">
           <GiLotus className="w-10 h-10 sm:w-12 sm:h-12 text-orange-600 flex-shrink-0" />
           <div>
             <h4 className="font-bold text-orange-600 text-lg sm:text-xl mb-2">Hindi Language</h4>
             <p className="text-gray-700 text-sm sm:text-base">{prog.hindi}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Additional Info for Daycare */}
+      {prog.additional && (
+        <div className="bg-yellow-50 rounded-3xl p-4 sm:p-6 flex gap-3 sm:gap-4">
+          <GiSparkles className="w-10 h-10 sm:w-12 sm:h-12 text-yellow-600 flex-shrink-0" />
+          <div>
+            <h4 className="font-bold text-yellow-600 text-lg sm:text-xl mb-2">Additional Benefits</h4>
+            <p className="text-gray-700 text-sm sm:text-base">{prog.additional}</p>
           </div>
         </div>
       )}
@@ -341,4 +352,3 @@ export default function Programs() {
     </div>
   );
 }
-
