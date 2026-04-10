@@ -59,7 +59,7 @@ const Navbar = () => {
     }
   };
 
-  const whatsappNumber = "+919311550069";
+  const whatsappNumber = "+919560407854";
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
   return (
