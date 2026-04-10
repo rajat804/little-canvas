@@ -126,22 +126,22 @@ export default function ContactUs() {
               {
                 icon: <FaPhoneAlt />,
                 title: "Call Us",
-                info: "+91 0000000000",
+                info: "+91 95604 07854",
                 sub: "Mon-Fri 9AM-6PM",
                 color: "from-green-400 to-emerald-500",
               },
               {
                 icon: <FaEnvelope />,
                 title: "Email Us",
-                info: "example@gmail.com",
+                info: "Goldensteppreschool@gmail.com",
                 sub: "We reply within 24 hrs",
                 color: "from-purple-400 to-pink-500",
               },
               {
                 icon: <FaMapMarkerAlt />,
                 title: "Visit Us",
-                info: "address...",
-                sub: " Ghaziabad, UP, 201017",
+                info: "SK-001, Sector 112, Noida",
+                sub: " UP, 201305",
                 color: "from-blue-400 to-cyan-500",
               },
               {
