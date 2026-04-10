@@ -286,7 +286,7 @@ export default function ContactUs() {
         </h2>
         <div className="flex justify-center gap-6 flex-wrap">
           <motion.a
-            href="https://www.instagram.com/littlecanvasschool?igsh=MWE5NmplNzQyN3JndQ=="
+            href="https://www.instagram.com/littlegoldenstep?igsh=MWIzdTIxY3dsOGhjdg=="
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.2, rotate: 360 }}
@@ -296,7 +296,7 @@ export default function ContactUs() {
             <FaInstagram />
           </motion.a>
           <motion.a
-            href="https://www.facebook.com/share/1X6MwmwmHZ/"
+            href="https://www.facebook.com/littlegoldenstep/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.2, rotate: 360 }}
@@ -305,7 +305,7 @@ export default function ContactUs() {
           >
             <FaFacebookF />
           </motion.a>
-          <motion.a
+          {/* <motion.a
             href="https://www.youtube.com/@LittleCanvasSchool"
             target="_blank"
             rel="noopener noreferrer"
@@ -324,7 +324,7 @@ export default function ContactUs() {
             className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-2xl text-[#4764c7] shadow-lg hover:shadow-xl border-2 border-purple-200"
           >
             <FaLinkedinIn />
-          </motion.a>
+          </motion.a> */}
         </div>
         <p className="mt-8 text-gray-600 text-lg">
           Tag us @GoldenStep — we love seeing your little ones shine! ✦
