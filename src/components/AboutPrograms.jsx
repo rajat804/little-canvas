@@ -59,9 +59,9 @@ const programs = [
     icon: <GiGraduateCap className="text-5xl text-white" />,
     icon2: <GiSparkles className="text-orange-400" />,
     title: "Daycare",
-    age: "2 - 6 Years",
-    text: "Flexible hours, hygienic meals, indoor & outdoor activities.",
-    features: ["Flexible", "Meals", "Activities"],
+    age: "2 - 14 Years", // Updated age range
+    text: "Flexible hours, hygienic meals, indoor & outdoor activities, homework assistance.",
+    features: ["Flexible", "Meals", "Activities", "Homework Help"],
   },
 ];
 
