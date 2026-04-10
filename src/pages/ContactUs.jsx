@@ -265,15 +265,15 @@ export default function ContactUs() {
           >
             {/* Responsive Container with 16:9 aspect ratio on mobile, full height on large screens */}
             <div className="relative w-full h-full pt-[56.25%] lg:pt-0 lg:h-full">
-              <iframe
-                src="https://www.google.com/maps?q=New+Delhi&output=embed"
-                className="absolute top-0 left-0 w-full h-full"
+              <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1448.2646412578558!2d77.40694840242772!3d28.563220098472915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjjCsDMzJzQ2LjkiTiA3N8KwMjQnMjcuNCJF!5e0!3m2!1sen!2sin!4v1775804483249!5m2!1sen!2sin"
+               className="absolute top-0 left-0 w-full h-full"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Exact Location"
-              ></iframe>
+               ></iframe>
+              
             </div>
           </motion.div>
         </div>
