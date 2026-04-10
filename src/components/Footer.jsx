@@ -16,16 +16,16 @@ export default function Footer() {
   ];
 
   const contactInfo = [
-    { icon: <FaMapMarkerAlt />, text: "123 Education Lane, Learning City, 12345" },
-    { icon: <FaPhone />, text: "+1 (555) 123-4567" },
-    { icon: <FaEnvelope />, text: "info@goldenstep.com" },
+    { icon: <FaMapMarkerAlt />, text: "SK-001, Sector 112, Noida" },
+    { icon: <FaPhone />, text: "+91 95604 07854" },
+    { icon: <FaEnvelope />, text: "Goldensteppreschool@gmail.com" },
   ];
 
   const socialLinks = [
-    { icon: <FaInstagram size={20} />, url: "https://www.instagram.com/littlecanvasschool?igsh=MWE5NmplNzQyN3JndQ==", label: "Instagram", color: "hover:text-[#E4405F]" },
-    { icon: <FaFacebookF size={20} />, url: "https://www.facebook.com/share/1X6MwmwmHZ/", label: "Facebook", color: "hover:text-[#1877F2]" },
-    { icon: <FaYoutube size={20} />, url: "https://www.youtube.com/@LittleCanvasSchool", label: "YouTube", color: "hover:text-[#FF0000]" },
-    { icon: <FaLinkedinIn size={20} />, url: "https://www.linkedin.com/company/littlecanvasschool/", label: "LinkedIn", color: "hover:text-[#0A66C2]" },
+    { icon: <FaInstagram size={20} />, url: "https://www.instagram.com/littlegoldenstep?igsh=MWIzdTIxY3dsOGhjdg==", label: "Instagram", color: "hover:text-[#E4405F]" },
+    { icon: <FaFacebookF size={20} />, url: "https://www.facebook.com/littlegoldenstep/", label: "Facebook", color: "hover:text-[#1877F2]" },
+    // { icon: <FaYoutube size={20} />, url: "https://www.youtube.com/@LittleCanvasSchool", label: "YouTube", color: "hover:text-[#FF0000]" },
+    // { icon: <FaLinkedinIn size={20} />, url: "https://www.linkedin.com/company/littlecanvasschool/", label: "LinkedIn", color: "hover:text-[#0A66C2]" },
   ];
 
   return (
