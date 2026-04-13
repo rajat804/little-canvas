@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import galleryImages from "../data/galleryData";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
 };
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 const borderColors = [
   "border-pink-400",
@@ -22,58 +20,10 @@ const borderColors = [
   "border-indigo-400",
 ];
 
-/* 🌈 Skeleton Loader Card */
-const SkeletonCard = ({ index }) => {
-  const borderColor = borderColors[index % borderColors.length];
-
-  return (
-    <div
-      className={`
-        rounded-2xl overflow-hidden border-4 border-dashed ${borderColor}
-        bg-white shadow-lg animate-pulse
-      `}
-    >
-      <div className="h-80 sm:h-96 lg:h-[28rem] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
-      <div className="mt-5 pb-7 px-5">
-        <div className="h-6 w-3/4 mx-auto bg-gray-200 rounded"></div>
-      </div>
-    </div>
-  );
-};
-
 export default function Gallery() {
-  const [galleryImages, setGalleryImages] = useState([]);
   const [activeImage, setActiveImage] = useState(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-  let mounted = true;
-
-  axios
-    .get(`${API_URL}/api/gallery`)
-    .then((res) => {
-      if (mounted) {
-        console.log(res.data); // 👈 check kar kya aa raha hai
-
-        // ✅ SAFE FIX
-        const images = Array.isArray(res.data)
-          ? res.data
-          : res.data.data || [];
-
-        setGalleryImages(images);
-        setLoading(false);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      setGalleryImages([]); // safety
-      setLoading(false);
-    });
-
-  return () => {
-    mounted = false;
-  };
-}, []);
+  
 
   return (
     <>
@@ -88,6 +38,7 @@ export default function Gallery() {
         >
           Our Gallery
         </motion.h1>
+
         <motion.p
           initial="hidden"
           animate="visible"
@@ -103,56 +54,38 @@ export default function Gallery() {
       {/* GALLERY GRID */}
       <section className="py-20 bg-[#FFFDF7]">
         <div className="max-w-7xl mx-auto px-6 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {loading &&
-            Array.from({ length: 6 }).map((_, i) => (
-              <SkeletonCard key={i} index={i} />
-            ))}
+          {galleryImages.map((img, index) => {
+  const borderColor = borderColors[index % borderColors.length];
 
-          {!loading &&
-            galleryImages.map((img, index) => {
-              const borderColor =
-                borderColors[index % borderColors.length];
-
-              return (
-                <motion.div
-                  key={img._id}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeUp}
-                  transition={{ delay: index * 0.06 }}
-                  onClick={() => setActiveImage(img)}
-                  className={`
-                    group cursor-pointer rounded-2xl overflow-hidden
-                    border-4 border-dashed ${borderColor}
-                    bg-white shadow-lg hover:shadow-2xl
-                    transition-all duration-300
-                  `}
-                >
-                  {/* Optimized Image */}
-                  <motion.img
-                    src={img.url}
-                    alt={img.title}
-                    loading="lazy"
-                    decoding="async"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.4 }}
-                    className="
-                      w-full h-80 sm:h-96 lg:h-[28rem] object-cover
-                      transition-transform duration-500
-                      group-hover:scale-105 group-hover:rotate-[1deg]
-                    "
-                  />
-
-                  <div className="mt-1 pb-1  text-center">
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 group-hover:text-[#4764c7] transition">
-                      {img.title}
-                    </h3>
-                  </div>
-                </motion.div>
-              );
-            })}
+  return (
+    <motion.div
+      key={img._id}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      transition={{ delay: index * 0.06 }}
+      onClick={() => setActiveImage(img)}
+      className={`
+        group cursor-pointer rounded-2xl overflow-hidden
+        border-4 border-dashed ${borderColor}
+        bg-white shadow-lg hover:shadow-2xl
+        transition-all duration-300
+      `}
+    >
+      <img
+        src={img.url}
+        alt="gallery"
+        loading="lazy"
+        className="
+          w-full h-80 sm:h-96 lg:h-[28rem] object-cover
+          transition-transform duration-500
+          group-hover:scale-105 group-hover:rotate-[1deg]
+        "
+      />
+    </motion.div>
+  );
+})}
         </div>
       </section>
 
@@ -172,7 +105,12 @@ export default function Gallery() {
               transition={{ duration: 0.3 }}
               className={`
                 relative max-w-5xl w-full bg-white rounded-3xl shadow-2xl
-                border-4 border-dashed ${borderColors[Math.floor(Math.random() * borderColors.length)]}
+                border-4 border-dashed
+                ${
+                  borderColors[
+                    Math.floor(Math.random() * borderColors.length)
+                  ]
+                }
                 overflow-hidden
               `}
             >
